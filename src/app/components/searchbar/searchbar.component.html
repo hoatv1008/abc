@@ -1,0 +1,22 @@
+<form class="search-form">
+  <mat-form-field floatLabel="never" disableRipple class="search-box">
+    
+      <input type="text" matInput placeholder="Tìm kiếm sản phẩm (F2)" [formControl]="productSearch" [matAutocomplete]="auto" />
+      <mat-icon matPrefix>search</mat-icon>
+      
+    <mat-autocomplete autoActiveFirstOption [disableRipple]="true" #auto="matAutocomplete">
+      <mat-option *ngFor="let p of products" [value]="p" (onSelectionChange)="productSelected(p)">
+        
+        <div class="sm-list-search-results-item">
+          <div > <b>{{ p.name }}</b></div>
+          <div ><span> Mã SP:   <b class="sku">{{p.sku}}</b></span>
+            <span> Giá:  <b class="price text-highlight" data-is-currency="">{{p.price}}</b></span>
+            <!-- <span> ĐVT:   <b class="uomcode">CAI</b></span>
+            <span> Quy đổi:   <b class="quantityBase">1</b></span> -->
+          </div>
+        </div>
+        <mat-divider></mat-divider>
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

@@ -1,0 +1,19 @@
+.search-form .search-box {
+    background-color: white;
+    border-radius: 20px;
+    color: #cccccc;
+    font-size: 13px;
+    height: 36px;
+    width: 350px;
+    padding-left: 10px;
+    margin-left: -10px;
+}
+.sm-list-search-results-item {
+    padding: 5px 15px;
+    box-shadow: none;
+    position: relative;
+}
+.mat-option{
+    line-height: 20px;
+    font-size: 14px;
+}

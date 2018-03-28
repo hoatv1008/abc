@@ -1,0 +1,29 @@
+.customer-search-box {
+    width: 100%;
+}
+.side-spacer {
+    flex: 1 1 auto;
+}
+.bottom-spacer mat-list-item, .line-fixed {
+    display: block;
+    width: 100%;
+}
+.bottom-spacer {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+.mat-list, .mat-nav-list, .mat-selection-list {
+    padding-top: 0;
+}
+.mat-toolbar.mat-primary {
+    background: #f37022;
+    color: #fff;
+  }
+.point-exchanged {
+    width: 50px;
+    padding-right: 50px;
+}
+.checkout-title {
+    margin: 0 auto;
+}
+.right { text-align: right }

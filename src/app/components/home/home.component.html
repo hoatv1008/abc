@@ -1,0 +1,46 @@
+<mat-sidenav-container class="main-container" autosize>
+  <div class="main-sidenav-content">
+    <mat-toolbar color="primary">
+        <app-searchbar></app-searchbar>
+        <span class="side-spacer"></span>
+        <mat-icon>history</mat-icon> <span class="header-title">Lịch sử đơn hàng</span>
+        <span class="icon-spacer"></span>
+        <mat-icon>language</mat-icon> <span class="header-title">Ngôn ngữ</span>
+    </mat-toolbar>
+    <mat-toolbar>
+      <mat-chip-list>
+          <mat-chip color="primary" 
+            selected="true" (remove)="remove(so)">
+          Đơn hàng 1
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+
+        <mat-chip *ngFor="let so of solist" color="{{so.selected?'primary':'secondary'}}" 
+            selected="{{so.selected}}" (remove)="remove(so)">
+          Đơn hàng {{so.id}}
+          <mat-icon matChipRemove>cancel</mat-icon>
+        </mat-chip>
+      </mat-chip-list>
+    </mat-toolbar>
+    <app-so-lines></app-so-lines>
+    
+    <!-- <div *ngFor="let cat of categories$ | async">
+      {{cat.name}}
+    </div> -->
+
+  </div>
+  <mat-sidenav #sidebar class="main-sidenav mat-elevation-z7" mode="side" position="end" opened>
+    <mat-toolbar color="primary">
+        <mat-icon class="account-icon md-48">account_circle</mat-icon>
+          <span class="side-spacer"></span>
+          <mat-icon>backup</mat-icon>
+          <span class="icon-spacer"></span>
+          <mat-icon>help</mat-icon>
+          <span class="icon-spacer"></span>
+          <mat-icon>exit_to_app</mat-icon>
+    </mat-toolbar>
+    
+    <app-so-summary></app-so-summary>
+    
+  </mat-sidenav>
+</mat-sidenav-container>
