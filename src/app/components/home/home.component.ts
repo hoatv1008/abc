@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
         this.currentSO = this.createSO();
         this.lstSO.push(this.currentSO);        
     }
-    addSO(oldSO: OrderDto) {
+    addSO() {
         let newSo = this.createSO();
         this.lstSO.push(newSo);
         this.currentSO = newSo;
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
             last_name: '',
             customer_points: 0
         }
-        soNew.id = 'SOD' + Math.floor(Math.random() * 99999) + 0;
+        soNew.id = 'SOD' + Math.floor(Math.random() * 99999);
         let oldSO = this.lstSO.filter(n => n.selected == true)[0];
         if (oldSO)
             oldSO.selected = false;
@@ -50,4 +50,17 @@ export class HomeComponent implements OnInit {
         so.selected = true;
         this.currentSO = so;
     }
+    removeSO(so: OrderDto) {
+        if (this.lstSO.length <= 1) {
+            this.lstSO = [];
+            this.addSO();
+        } else {
+            var index = this.lstSO.indexOf(so, 0);
+            if (index > -1) {
+                this.lstSO.splice(index, 1);
+            }
+            this.currentSO = this.lstSO[0];
+        }
+    }
+
 }

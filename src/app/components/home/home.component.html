@@ -13,7 +13,7 @@
                 <mat-chip *ngFor="let so of lstSO;let i = index" color="{{so.selected?'primary':'secondary'}}"
                           selected="{{so.selected}}"  (click)="selectSO(so)">
                     Đơn hàng {{i + 1}}
-                    <mat-icon matChipRemove (remove)="remove(so)">cancel</mat-icon>
+                    <mat-icon matChipRemove (click)="removeSO(so)">cancel</mat-icon>
                 </mat-chip>
 
                 <mat-chip color="secondary" style="cursor:pointer" (click)="addSO()">
