@@ -8,12 +8,26 @@
     padding-left: 10px;
     margin-left: -10px;
 }
+
 .sm-list-search-results-item {
     padding: 5px 15px;
     box-shadow: none;
     position: relative;
 }
-.mat-option{
+
+.mat-option {
     line-height: 20px;
     font-size: 14px;
+}
+
+.mat-input-underline {
+    display: none !important;
+}
+
+.mat-toolbar.mat-primary {
+    background: none;
+}
+
+.mat-input-placeholder {
+    color: peachpuff;
 }

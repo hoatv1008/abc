@@ -70,7 +70,7 @@ export class OrdersService extends BaseService {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (orderDelta != null) __params = __params.set("orderDelta", orderDelta.toString());
+       if (orderDelta != null) __params = __params.set("orderDelta", JSON.stringify(orderDelta));
     let req = new HttpRequest<any>(
       "POST",
       this.rootUrl + `/api/orders`,

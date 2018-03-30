@@ -16,7 +16,6 @@ export class AppComponent {
 
   remove(so: any): void {
     let i = this.solist.indexOf(so);
-
     if (i >= 0) {
       this.solist.splice(i, 1);
     }

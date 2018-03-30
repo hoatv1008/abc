@@ -1,4 +1,6 @@
-.mat-table {
-    overflow: auto;
-    max-height: 100%;
-  }
+
+tbody tr th
+
+{
+    font-weight: normal;
+}

@@ -5,6 +5,8 @@ import {startWith} from 'rxjs/operators/startWith';
 import {map} from 'rxjs/operators/map';
 // import { of } from 'rxjs/observable/of';
 import { ProductsService } from '../../services';
+import { ItemHeaderService } from '../../services/item-header.service';
+
 import { ProductDto, ProductsRootObjectDto } from '../../models';
 
 @Component({
@@ -17,7 +19,7 @@ export class SOSearchbarComponent implements OnInit {
   productSearch: FormControl = new FormControl();
   products: ProductDto[];
 
-  constructor(private catalog: ProductsService) {
+    constructor(private catalog: ProductsService, private itemHeaderService: ItemHeaderService) {
 
   }
 
@@ -36,7 +38,7 @@ export class SOSearchbarComponent implements OnInit {
 
   productSelected(c: ProductDto) {
     // save into current sales order
-    
+      this.itemHeaderService.changeItem(c);
     
   }
 }

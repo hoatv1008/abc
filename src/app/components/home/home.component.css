@@ -46,7 +46,6 @@
     flex-wrap: wrap;
     align-content: space-between;
   }
-  .mat-form-field-underline {
-      background-color: transparent;
-      height: 0;
-  }
+form > mat-form-field .mat-form-field-underline {
+    display: none !important;
+}
