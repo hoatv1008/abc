@@ -1,36 +1,24 @@
-<mat-table #table [dataSource]="dataSource">
-
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Position Column -->
-  <ng-container matColumnDef="position">
-    <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-  </ng-container>
-
-  <!-- Name Column -->
-  <ng-container matColumnDef="name">
-    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
-  </ng-container>
-
-  <!-- Weight Column -->
-  <ng-container matColumnDef="weight">
-    <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-    <mat-cell *matCellDef="let element">  
-        <mat-form-field>
-      <input matInput type="number" value="{{element.weight}}" />
-    </mat-form-field>
-    </mat-cell>
-  </ng-container>
-
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="symbol">
-    <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
-  </ng-container>
-
-  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-</mat-table>
+﻿<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th scope="col">STT</th>
+            <th scope="col">Mã sản phẩm</th>
+            <th scope="col">Tên sản phẩm</th>
+            <th scope="col" class="text-right">Giá bán</th>
+            <th scope="col" class="text-right">Số lượng</th>
+            <th scope="col" class="text-right">Thành tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of so.order_items; let i = index">
+            <th scope="row"><i class="material-icons" (click)="onDeleteItem(item)" style="font-size:25px; color:red; font-weight:bold; cursor:pointer">clear</i></th>
+            <th scope="row">{{i}}</th>
+            <th scope="row">{{item.product.sku}}</th>
+            <th scope="row">{{item.product.name}}</th>
+            <th scope="row" class="text-right"><input class="text-right" [(ngModel)]="item.price_incl_tax" value="{{item.price_incl_tax | number: 0}}" style="max-width:70px; border: none" (ngModelChange)="onChange(item)" /></th>
+            <th scope="row" class="text-right"><input class="text-right" [(ngModel)]="item.quantity" value="{{item.quantity | number: 0}}" style="max-width:70px; border: none" (ngModelChange)="onChange(item)" /></th>
+            <th scope="row" class="text-right">{{item.total_amount | number: 0}}</th>
+        </tr>
+    </tbody>
+</table>

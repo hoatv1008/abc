@@ -2,41 +2,42 @@
 
 export interface OrderCustomerDto {
 
-  active?: boolean;
+    active?: boolean;
 
-  id?: string;
+    id?: string;
 
-  email?: string;
+    email?: string;
 
-  first_name?: string;
+    first_name?: string;
 
-  last_name?: string;
+    last_name?: string;
 
-  language_id?: string;
+    language_id?: string;
 
-  admin_comment?: string;
+    admin_comment?: string;
 
-  is_tax_exempt?: boolean;
+    is_tax_exempt?: boolean;
 
-  has_shopping_cart_items?: boolean;
+    has_shopping_cart_items?: boolean;
 
-  username?: string;
+    username?: string;
 
-  deleted?: boolean;
+    deleted?: boolean;
 
-  is_system_account?: boolean;
+    is_system_account?: boolean;
 
-  system_name?: string;
+    system_name?: string;
 
-  last_ip_address?: string;
+    last_ip_address?: string;
 
-  created_on_utc?: string;
+    created_on_utc?: string;
 
-  last_login_date_utc?: string;
+    last_login_date_utc?: string;
 
-  last_activity_date_utc?: string;
+    last_activity_date_utc?: string;
 
-  registered_in_store_id?: number;
+    registered_in_store_id?: number;
 
-  role_ids?: number[];
+    role_ids?: number[];
+    customer_points?: number;
 }
