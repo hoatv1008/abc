@@ -55,5 +55,9 @@ export class SOLinesComponent implements OnInit {
             this.so.order_total += n.total_amount;
         });
     }
+    onChange(item): void {
+        item.total_amount = item.price_incl_tax * item.quantity;
+        this.calSummany();
+    }
 }
 

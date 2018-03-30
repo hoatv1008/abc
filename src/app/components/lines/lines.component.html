@@ -1,5 +1,5 @@
-﻿<table class="table">
-    <thead>
+﻿<table class="table table-striped table-sm">
+    <thead class="thead-light">
         <tr>
             <th></th>
             <th scope="col">STT</th>
@@ -7,18 +7,24 @@
             <th scope="col">Tên sản phẩm</th>
             <th scope="col" class="text-right">Giá bán</th>
             <th scope="col" class="text-right">Số lượng</th>
-            <th scope="col" class="text-right">Thành tiền</th>
+            <th scope="col" class="text-right" style="padding-right:20px">Thành tiền</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let item of so.order_items; let i = index">
-            <th scope="row"><i class="material-icons" (click)="onDeleteItem(item)" style="font-size:25px; color:red; font-weight:bold; cursor:pointer">clear</i></th>
+        <tr class="table-light" *ngFor="let item of so.order_items; let i = index">
+            <th scope="row" style="width:30px;"><i class="material-icons" (click)="onDeleteItem(item)" style="font-size:25px; color:red; font-weight:bold; cursor:pointer">clear</i></th>
             <th scope="row">{{i}}</th>
             <th scope="row">{{item.product.sku}}</th>
             <th scope="row">{{item.product.name}}</th>
-            <th scope="row" class="text-right"><input class="text-right" [(ngModel)]="item.price_incl_tax" value="{{item.price_incl_tax | number: 0}}" style="max-width:70px; border: none" (ngModelChange)="onChange(item)" /></th>
-            <th scope="row" class="text-right"><input class="text-right" [(ngModel)]="item.quantity" value="{{item.quantity | number: 0}}" style="max-width:70px; border: none" (ngModelChange)="onChange(item)" /></th>
-            <th scope="row" class="text-right">{{item.total_amount | number: 0}}</th>
+            <th scope="row" class="text-right">
+                <input type="number" class="text-right" [ngModel]="item.price_incl_tax"
+                       (ngModelChange)="item.price_incl_tax=$event" style="max-width:100px; border: none" (keyup)="onChange(item)" />
+            </th>
+            <th scope="row" class="text-right">
+                <input type="number" class="text-right" [ngModel]="item.quantity"
+                       (ngModelChange)="item.quantity=$event" style="max-width:70px; border: none" (keyup)="onChange(item)" />
+            </th>
+            <th scope="row" class="text-right" style="padding-right:20px">{{item.total_amount}}</th>
         </tr>
     </tbody>
 </table>

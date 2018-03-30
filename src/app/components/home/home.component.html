@@ -9,7 +9,6 @@
         </mat-toolbar>
         <mat-toolbar>
             <mat-chip-list>
-
                 <mat-chip *ngFor="let so of lstSO;let i = index" color="{{so.selected?'primary':'secondary'}}"
                           selected="{{so.selected}}"  (click)="selectSO(so)">
                     Đơn hàng {{i + 1}}
@@ -19,7 +18,6 @@
                 <mat-chip color="secondary" style="cursor:pointer" (click)="addSO()">
                     +
                 </mat-chip>
-
             </mat-chip-list>
         </mat-toolbar>
         <app-so-lines [(so)]="currentSO"></app-so-lines>

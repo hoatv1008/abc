@@ -1,0 +1,67 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '../../@theme/styles/themes';
+
+
+@include nb-install-component() {
+  .solar-card nb-card-header {
+    border: none;
+    padding-bottom: 0;
+  }
+
+  /deep/ table {
+    tbody {
+      tr {
+        th {
+          font-weight: normal;
+        }
+      }
+    }
+  }
+
+  order-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 300px;
+  }
+
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }
+
+  .table-header {
+    min-height: 64px;
+    padding: 8px 24px 0;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  /deep/ .mat-input-element {
+    border-bottom: 1px solid #f37022;
+    width: 20%;
+    margin-bottom: -26px;
+  }
+
+  /deep/ mat-table {
+    mat-header-row {
+      mat-header-cell {
+        color: #4b4b4b;
+        font-size: 15px;
+        font-weight: bold;
+      }
+    }
+  }
+
+  /deep/ mat-table {
+    mat-header-row {
+      mat-header-cell {
+        .cdk-visually-hidden {
+          display: none;
+        }
+      }
+    }
+  }
+}
