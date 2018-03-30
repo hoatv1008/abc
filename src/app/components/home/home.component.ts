@@ -59,6 +59,7 @@ export class HomeComponent implements OnInit {
             if (index > -1) {
                 this.lstSO.splice(index, 1);
             }
+            this.lstSO[0].selected = true;
             this.currentSO = this.lstSO[0];
         }
     }

@@ -71,7 +71,7 @@ import { ProductsService } from './services/products.service';
 import { ShoppingCartItemsService } from './services/shopping-cart-items.service';
 import { StoreService } from './services/store.service';
 import { ItemHeaderService } from './services/item-header.service';
-
+import { AmountConverterPipe } from './Common/amountConverterPipe'
 @NgModule({
     declarations: [
         AppComponent,
@@ -79,7 +79,8 @@ import { ItemHeaderService } from './services/item-header.service';
         HomeComponent,
         SOSearchbarComponent,
         SOLinesComponent,
-        SOSummaryComponent
+        SOSummaryComponent,
+        AmountConverterPipe
     ],
     imports: [
         BrowserModule,
