@@ -1,64 +1,69 @@
 
-<nb-card>
-  <nb-card-header>
-    Danh sách đơn hàng
-  </nb-card-header>
-  <nb-card-body>
-    <div class="order-container">
-      <div class="table-header">
-        <mat-form-field>
-          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm kiếm">
-        </mat-form-field>
-      </div>
-      <mat-table #table [dataSource]="dataSource" matSort>
 
-        <!-- Position Column -->
-        <ng-container matColumnDef="id">
-          <mat-header-cell *matHeaderCellDef> Số đơn hàng </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-        </ng-container>
+<mat-sidenav-container class="main-container" autosize>
+    <div class="main-sidenav-content">
+        <mat-toolbar color="primary">
+            <app-searchbar></app-searchbar>
+            <span class="side-spacer"></span>
+            <i class="material-icons">shopping_cart</i> <span class="header-title"><a href="#" style="color: #fff;text-decoration: none;">Bán hàng</a></span>
+            <span class="icon-spacer"></span>
+            <mat-icon>language</mat-icon> <span class="header-title">Ngôn ngữ</span>
+            <span class="icon-spacer"></span>
+            <mat-icon>exit_to_app</mat-icon>
+        </mat-toolbar>
+        <div class="col-sm-12">
+            <div class="order-container">
+                <div class="table-header">
+                    <mat-form-field>
+                        <input matInput (keyup)="filter($event.target.value)" placeholder="Tìm kiếm" style="background-color:none">
+                    </mat-form-field>
+                </div>
+                <mat-table #table [dataSource]="dataSource" matSort>
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="id">
+                        <mat-header-cell *matHeaderCellDef> Số đơn hàng </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+                    </ng-container>
 
-        <!-- Name Column -->
-        <ng-container matColumnDef="customer_currency_code">
-          <mat-header-cell *matHeaderCellDef> Mã khách hàng </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.customer_currency_code}} </mat-cell>
-        </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="customer_language_id">
+                        <mat-header-cell *matHeaderCellDef> Mã khách hàng </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.customer.id}} </mat-cell>
+                    </ng-container>
 
-        <!-- Weight Column -->
-        <!--<ng-container matColumnDef="SecondaryCustomerName">
-          <mat-header-cell *matHeaderCellDef> Tên khách hàng </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.SecondaryCustomerName}} </mat-cell>
-        </ng-container>-->
-        <!-- Symbol Column -->
-        <ng-container matColumnDef="paid_date_utc">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Ngày đặt hàng </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.paid_date_utc}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="order_status">
-          <mat-header-cell *matHeaderCellDef> Trạng thái </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.order_status}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="order_total">
-          <mat-header-cell *matHeaderCellDef mat-sort-header> Thành tiền </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.order_total}} </mat-cell>
-        </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
 
-      <mat-paginator #paginator
-                     [pageSize]="10"
-                     [pageSizeOptions]="[5, 10, 20]"
-                     [showFirstLastButtons]="true">
-      </mat-paginator>
-      <a mat-mini-fab style="background-color:#f37022"  href="#">
-        <i class="material-icons">shopping_cart</i>
-      </a>
+                    <!-- Weight Column -->
+                    <ng-container matColumnDef="customer">
+                        <mat-header-cell *matHeaderCellDef> Tên khách hàng </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.customer.first_name + ' ' + element.customer.last_name}} </mat-cell>
+                    </ng-container>
+                    <!-- Symbol Column -->
+                    <ng-container matColumnDef="paid_date_utc">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Ngày đặt hàng </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.paid_date_utc}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="order_status">
+                        t-
+                        <mat-header-cell *matHeaderCellDef>Trạng thái</mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.order_status}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="order_total">
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Thành tiền </mat-header-cell>
+                        <mat-cell *matCellDef="let element"> {{element.order_total}} </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+
+                <mat-paginator #paginator
+                               [pageSize]="10"
+                               [pageSizeOptions]="[5, 10, 20]"
+                               [showFirstLastButtons]="true">
+                </mat-paginator>
+            </div>
+        </div>
     </div>
-  </nb-card-body>
-  
-</nb-card>
 
-
-
+</mat-sidenav-container>

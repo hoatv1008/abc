@@ -30,7 +30,8 @@ export class SOSearchbarComponent implements OnInit {
     });
   }
 
-  filter(val: string): Observable<ProductDto[]> {
+    filter(val: string): Observable<ProductDto[]> {
+        debugger
     return this.catalog.ApiProductsGet().map(r => {
       return r.products;
     });

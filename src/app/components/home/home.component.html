@@ -3,14 +3,16 @@
         <mat-toolbar color="primary">
             <app-searchbar></app-searchbar>
             <span class="side-spacer"></span>
-            <mat-icon>history</mat-icon> <span class="header-title">Lịch sử đơn hàng</span>
+            <mat-icon>history</mat-icon> <span class="header-title">
+                <a href="/soh" style="color: #fff;text-decoration: none;">Lịch sử đơn hàng</a>
+            </span>
             <span class="icon-spacer"></span>
             <mat-icon>language</mat-icon> <span class="header-title">Ngôn ngữ</span>
         </mat-toolbar>
         <mat-toolbar>
             <mat-chip-list>
                 <mat-chip *ngFor="let so of lstSO;let i = index" color="{{so.selected?'primary':'secondary'}}"
-                          selected="{{so.selected}}"  (click)="selectSO(so)">
+                          selected="{{so.selected}}" (click)="selectSO(so)">
                     Đơn hàng {{i + 1}}
                     <mat-icon matChipRemove (click)="removeSO(so)">cancel</mat-icon>
                 </mat-chip>
@@ -32,6 +34,6 @@
             <span class="icon-spacer"></span>
             <mat-icon>exit_to_app</mat-icon>
         </mat-toolbar>
-        <app-so-summary [(so)]="currentSO" ></app-so-summary>
+        <app-so-summary [(so)]="currentSO"></app-so-summary>
     </mat-sidenav>
 </mat-sidenav-container>
