@@ -20,6 +20,7 @@ export class SOSummaryComponent implements OnInit {
         private itemHeaderService: ItemHeaderService,
         private ordersService: OrdersService) {
     }
+    orderDelta: any;
     customerPay: number = 0;
     ngOnInit() {
         this.customerSearch.valueChanges
@@ -48,8 +49,16 @@ export class SOSummaryComponent implements OnInit {
             customer_points: c.customer_points
         };
         this.summaryChange.emit(this.so);
+        //this.customerSearch.setValue('');
     }
     releaseSalesOrder() {
         localStorage.setItem(this.so.id + '_salesInvoice', JSON.stringify(this.so));
+        this.orderDelta = this.ordersService.getSampleData();
+        this.submit(this.orderDelta).subscribe(r => this.orderDelta = r);
+    }
+    submit(val: OrderDto): Observable<OrderDto[]> {
+        return this.ordersService.ApiOrdersPost(val).map(r => {
+            return r.orders;
+        });
     }
 }
