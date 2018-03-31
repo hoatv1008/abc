@@ -49,6 +49,7 @@ import { SOSummaryComponent } from './components/summary/summary.component';
 
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
+import { OrderHistoryComponent } from './components/order-history/order-history.component';
 
 import { Routing } from './app.routing';
 import { AuthGuard } from './app.guards';
@@ -77,6 +78,7 @@ import { AmountConverterPipe } from './Common/amountConverterPipe'
         AppComponent,
         LoginComponent,
         HomeComponent,
+        OrderHistoryComponent,
         SOSearchbarComponent,
         SOLinesComponent,
         SOSummaryComponent,

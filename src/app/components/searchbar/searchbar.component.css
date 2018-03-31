@@ -20,8 +20,8 @@
     font-size: 14px;
 }
 
-.mat-input-underline {
-    display: none !important;
+/deep/ .mat-input-underline {
+    display: none;
 }
 
 .mat-toolbar.mat-primary {
@@ -30,4 +30,7 @@
 
 .mat-input-placeholder {
     color: peachpuff;
+}
+/deep/ .mat-form-field-flex {
+    align-items: flex-end !important;
 }

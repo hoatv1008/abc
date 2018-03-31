@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     createSO() {
         let soNew = new OrderDto();
         soNew.customer = {
-            first_name: 'Khách hàng vãng lai',
+            first_name: 'Khach hang vang lai',
             id: '010101010',
             last_name: '',
             customer_points: 0
