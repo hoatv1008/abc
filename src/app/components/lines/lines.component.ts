@@ -1,7 +1,8 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { ItemHeaderService } from '../../services/item-header.service';
 import { MatTableDataSource, MatSort } from '@angular/material';
-import { OrderItemDto, OrderDto } from '../../models';
+import { OrderItemDto } from '../../models';
+import { OrderDtoVM } from '../../models/order-dto-vm';
 import { Element } from '@angular/compiler';
 @Component({
     selector: 'app-so-lines',
@@ -11,8 +12,8 @@ import { Element } from '@angular/compiler';
 export class SOLinesComponent implements OnInit {
     displayedColumns = ['sku', 'name', 'price', 'quantity', 'total_amount'];
     customerPay = 0;
-    @Input() so: OrderDto;
-    @Output() lineChange = new EventEmitter<OrderDto>();
+    @Input() so: OrderDtoVM;
+    @Output() lineChange = new EventEmitter<OrderDtoVM>();
     constructor(private itemHeaderService: ItemHeaderService) {
 
     }

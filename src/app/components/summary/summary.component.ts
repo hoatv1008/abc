@@ -5,7 +5,9 @@ import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
 import { CustomersService, OrdersService} from '../../services';
 import { ItemHeaderService } from '../../services/item-header.service';
-import { CustomersRootObject, OrderDto, OrderItemDto, OrderCustomerDto } from '../../models';
+import { CustomersRootObject, OrderItemDto, OrderCustomerDto } from '../../models';
+import { OrderDtoVM } from '../../models/order-dto-vm';
+import { OrderCustomerVM } from '../../models/order-customer-dto-vm';
 @Component({
     selector: 'app-so-summary',
     templateUrl: './summary.component.html',
@@ -14,8 +16,8 @@ import { CustomersRootObject, OrderDto, OrderItemDto, OrderCustomerDto } from '.
 export class SOSummaryComponent implements OnInit {
     customerSearch: FormControl = new FormControl();
     customers: OrderCustomerDto[];
-    @Input() so: OrderDto;
-    @Output() summaryChange = new EventEmitter<OrderDto>();
+    @Input() so: OrderDtoVM;
+    @Output() summaryChange = new EventEmitter<OrderDtoVM>();
     constructor(private customerService: CustomersService,
         private itemHeaderService: ItemHeaderService,
         private ordersService: OrdersService) {
@@ -41,7 +43,7 @@ export class SOSummaryComponent implements OnInit {
         }
         return c.first_name + ' ' + c.last_name;
     }
-    customerSelected(c: OrderCustomerDto) {
+    customerSelected(c: OrderCustomerVM) {
         this.so.customer = {
             first_name: c.first_name,
             id: c.id,
@@ -53,11 +55,11 @@ export class SOSummaryComponent implements OnInit {
     }
     releaseSalesOrder() {
         localStorage.setItem(this.so.id + '_salesInvoice', JSON.stringify(this.so));
-        this.orderDelta = this.ordersService.getSampleData();
+        //this.orderDelta = this.ordersService.getSampleData();
         this.submit(this.orderDelta).subscribe(r => this.orderDelta = r);
     }
-    submit(val: OrderDto): Observable<OrderDto[]> {
-        return this.ordersService.ApiOrdersPost(val).map(r => {
+    submit(val: OrderDtoVM): Observable<OrderDtoVM[]> {
+        return this.ordersService.ApiOrdersCreatePost(val).map(r => {
             return r.orders;
         });
     }

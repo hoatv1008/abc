@@ -3,7 +3,7 @@ import { Observable } from "rxjs/Observable";
 import { of } from 'rxjs/observable/of';
 import { CategoriesService } from "../../services";
 import { CategoriesRootObject, CategoryDto } from "../../models";
-import { OrderDto } from '../../models/order-dto';
+import { OrderDtoVM } from '../../models/order-dto-vm';
 import { ItemHeaderService } from '../../services/item-header.service';
 
 @Component({
@@ -13,8 +13,8 @@ import { ItemHeaderService } from '../../services/item-header.service';
 })
 export class HomeComponent implements OnInit {
 
-    lstSO = new Array<OrderDto>();
-    currentSO = new OrderDto();
+    lstSO = new Array<OrderDtoVM>();
+    currentSO = new OrderDtoVM();
     customerPay: number = 0;
     constructor(private itemHeaderService: ItemHeaderService) { }
 
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
         this.currentSO = newSo;
     }
     createSO() {
-        let soNew = new OrderDto();
+        let soNew = new OrderDtoVM();
         soNew.customer = {
             first_name: 'Khach hang vang lai',
             id: '010101010',
@@ -43,14 +43,14 @@ export class HomeComponent implements OnInit {
         soNew.order_items = [];        
         return soNew;
     }
-    selectSO(so: OrderDto){
+    selectSO(so: OrderDtoVM){
         let oldSO = this.lstSO.filter(n => n.selected == true)[0];
         if (oldSO)
             oldSO.selected = false;
         so.selected = true;
         this.currentSO = so;
     }
-    removeSO(so: OrderDto) {
+    removeSO(so: OrderDtoVM) {
         if (this.lstSO.length <= 1) {
             this.lstSO = [];
             this.addSO();
