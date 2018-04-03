@@ -1,7 +1,7 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
 import {
-  HttpClient, HttpRequest, HttpResponse, 
+  HttpClient, HttpRequest, HttpResponse,
   HttpHeaders, HttpParams } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
@@ -11,7 +11,6 @@ import { filter } from 'rxjs/operators/filter';
 
 import { CustomerRolesRootObject } from '../models/customer-roles-root-object';
 import { ErrorsRootObject } from '../models/errors-root-object';
-
 @Injectable()
 export class CustomerRolesService extends BaseService {
   constructor(
@@ -25,13 +24,13 @@ export class CustomerRolesService extends BaseService {
    * @param fields undefined
    * @return Success
    */
-   ApiCustomer_rolesGetResponse(fields?: string): Observable<HttpResponse<CustomerRolesRootObject>> {
+  ApiCustomer_rolesGetResponse(fields?: string): Observable<HttpResponse<CustomerRolesRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (fields != null) __params = __params.set("fields", fields.toString());
+    if (fields != null) __params = __params.set('fields', fields.toString());
     let req = new HttpRequest<any>(
-      "GET",
+      'GET',
       this.rootUrl + `/api/customer_roles`,
       __body,
       {
@@ -55,7 +54,7 @@ export class CustomerRolesService extends BaseService {
    * @param fields undefined
    * @return Success
    */
-   ApiCustomer_rolesGet(fields?: string): Observable<CustomerRolesRootObject> {
+  ApiCustomer_rolesGet(fields?: string): Observable<CustomerRolesRootObject> {
     return this.ApiCustomer_rolesGetResponse(fields).pipe(
       map(_r => _r.body)
     );

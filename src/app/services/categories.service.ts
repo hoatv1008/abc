@@ -1,7 +1,7 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
 import {
-  HttpClient, HttpRequest, HttpResponse, 
+  HttpClient, HttpRequest, HttpResponse,
   HttpHeaders, HttpParams } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
@@ -12,7 +12,6 @@ import { filter } from 'rxjs/operators/filter';
 import { CategoriesRootObject } from '../models/categories-root-object';
 import { ErrorsRootObject } from '../models/errors-root-object';
 import { CategoriesCountRootObject } from '../models/categories-count-root-object';
-
 @Injectable()
 export class CategoriesService extends BaseService {
   constructor(
@@ -26,13 +25,13 @@ export class CategoriesService extends BaseService {
    * @param parameters undefined
    * @return Success
    */
-   ApiCategoriesGetResponse(parameters?: any): Observable<HttpResponse<CategoriesRootObject>> {
+  ApiCategoriesGetResponse(parameters?: any): Observable<HttpResponse<CategoriesRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (parameters != null) __params = __params.set("parameters", parameters.toString());
+    if (parameters != null) __params = __params.set('parameters', parameters.toString());
     let req = new HttpRequest<any>(
-      "GET",
+      'GET',
       this.rootUrl + `/api/categories`,
       __body,
       {
@@ -56,7 +55,7 @@ export class CategoriesService extends BaseService {
    * @param parameters undefined
    * @return Success
    */
-   ApiCategoriesGet(parameters?: any): Observable<CategoriesRootObject> {
+  ApiCategoriesGet(parameters?: any): Observable<CategoriesRootObject> {
     return this.ApiCategoriesGetResponse(parameters).pipe(
       map(_r => _r.body)
     );
@@ -66,13 +65,13 @@ export class CategoriesService extends BaseService {
    * @param categoryDelta undefined
    * @return Success
    */
-   ApiCategoriesPostResponse(categoryDelta?: any): Observable<HttpResponse<CategoriesRootObject>> {
+  ApiCategoriesPostResponse(categoryDelta?: any): Observable<HttpResponse<CategoriesRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (categoryDelta != null) __params = __params.set("categoryDelta", categoryDelta.toString());
+    if (categoryDelta != null) __params = __params.set('categoryDelta', categoryDelta.toString());
     let req = new HttpRequest<any>(
-      "POST",
+      'POST',
       this.rootUrl + `/api/categories`,
       __body,
       {
@@ -96,7 +95,7 @@ export class CategoriesService extends BaseService {
    * @param categoryDelta undefined
    * @return Success
    */
-   ApiCategoriesPost(categoryDelta?: any): Observable<CategoriesRootObject> {
+  ApiCategoriesPost(categoryDelta?: any): Observable<CategoriesRootObject> {
     return this.ApiCategoriesPostResponse(categoryDelta).pipe(
       map(_r => _r.body)
     );
@@ -106,13 +105,13 @@ export class CategoriesService extends BaseService {
    * @param parameters undefined
    * @return Success
    */
-   ApiCategoriesCountGetResponse(parameters?: any): Observable<HttpResponse<CategoriesCountRootObject>> {
+  ApiCategoriesCountGetResponse(parameters?: any): Observable<HttpResponse<CategoriesCountRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (parameters != null) __params = __params.set("parameters", parameters.toString());
+    if (parameters != null) __params = __params.set('parameters', parameters.toString());
     let req = new HttpRequest<any>(
-      "GET",
+      'GET',
       this.rootUrl + `/api/categories/count`,
       __body,
       {
@@ -136,7 +135,7 @@ export class CategoriesService extends BaseService {
    * @param parameters undefined
    * @return Success
    */
-   ApiCategoriesCountGet(parameters?: any): Observable<CategoriesCountRootObject> {
+  ApiCategoriesCountGet(parameters?: any): Observable<CategoriesCountRootObject> {
     return this.ApiCategoriesCountGetResponse(parameters).pipe(
       map(_r => _r.body)
     );
@@ -145,20 +144,20 @@ export class CategoriesService extends BaseService {
   /**
    * @param params The `CategoriesService.ApiCategoriesByIdGetParams` containing the following parameters:
    *
-   * - `id`: 
+   * - `id`:
    *
-   * - `fields`: 
+   * - `fields`:
    *
    * @return Success
    */
-   ApiCategoriesByIdGetResponse(params: CategoriesService.ApiCategoriesByIdGetParams): Observable<HttpResponse<CategoriesRootObject>> {
+  ApiCategoriesByIdGetResponse(params: CategoriesService.ApiCategoriesByIdGetParams): Observable<HttpResponse<CategoriesRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
-    if (params.fields != null) __params = __params.set("fields", params.fields.toString());
+    if (params.fields != null) __params = __params.set('fields', params.fields.toString());
     let req = new HttpRequest<any>(
-      "GET",
+      'GET',
       this.rootUrl + `/api/categories/${params.id}`,
       __body,
       {
@@ -181,13 +180,13 @@ export class CategoriesService extends BaseService {
   /**
    * @param params The `CategoriesService.ApiCategoriesByIdGetParams` containing the following parameters:
    *
-   * - `id`: 
+   * - `id`:
    *
-   * - `fields`: 
+   * - `fields`:
    *
    * @return Success
    */
-   ApiCategoriesByIdGet(params: CategoriesService.ApiCategoriesByIdGetParams): Observable<CategoriesRootObject> {
+  ApiCategoriesByIdGet(params: CategoriesService.ApiCategoriesByIdGetParams): Observable<CategoriesRootObject> {
     return this.ApiCategoriesByIdGetResponse(params).pipe(
       map(_r => _r.body)
     );
@@ -196,20 +195,20 @@ export class CategoriesService extends BaseService {
   /**
    * @param params The `CategoriesService.ApiCategoriesByIdPutParams` containing the following parameters:
    *
-   * - `id`: 
+   * - `id`:
    *
-   * - `categoryDelta`: 
+   * - `categoryDelta`:
    *
    * @return Success
    */
-   ApiCategoriesByIdPutResponse(params: CategoriesService.ApiCategoriesByIdPutParams): Observable<HttpResponse<CategoriesRootObject>> {
+  ApiCategoriesByIdPutResponse(params: CategoriesService.ApiCategoriesByIdPutParams): Observable<HttpResponse<CategoriesRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
-    if (params.categoryDelta != null) __params = __params.set("categoryDelta", params.categoryDelta.toString());
+    if (params.categoryDelta != null) __params = __params.set('categoryDelta', params.categoryDelta.toString());
     let req = new HttpRequest<any>(
-      "PUT",
+      'PUT',
       this.rootUrl + `/api/categories/${params.id}`,
       __body,
       {
@@ -232,13 +231,13 @@ export class CategoriesService extends BaseService {
   /**
    * @param params The `CategoriesService.ApiCategoriesByIdPutParams` containing the following parameters:
    *
-   * - `id`: 
+   * - `id`:
    *
-   * - `categoryDelta`: 
+   * - `categoryDelta`:
    *
    * @return Success
    */
-   ApiCategoriesByIdPut(params: CategoriesService.ApiCategoriesByIdPutParams): Observable<CategoriesRootObject> {
+  ApiCategoriesByIdPut(params: CategoriesService.ApiCategoriesByIdPutParams): Observable<CategoriesRootObject> {
     return this.ApiCategoriesByIdPutResponse(params).pipe(
       map(_r => _r.body)
     );
@@ -247,13 +246,13 @@ export class CategoriesService extends BaseService {
   /**
    * @param id undefined
    */
-   ApiCategoriesByIdDeleteResponse(id: number): Observable<HttpResponse<void>> {
+  ApiCategoriesByIdDeleteResponse(id: number): Observable<HttpResponse<void>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
-      "DELETE",
+      'DELETE',
       this.rootUrl + `/api/categories/${id}`,
       __body,
       {
@@ -267,7 +266,7 @@ export class CategoriesService extends BaseService {
       map(_r => {
         let _resp = _r as HttpResponse<any>;
         let _body: void = null;
-        
+
         return _resp.clone({body: _body}) as HttpResponse<void>;
       })
     );
@@ -276,7 +275,7 @@ export class CategoriesService extends BaseService {
   /**
    * @param id undefined
    */
-   ApiCategoriesByIdDelete(id: number): Observable<void> {
+  ApiCategoriesByIdDelete(id: number): Observable<void> {
     return this.ApiCategoriesByIdDeleteResponse(id).pipe(
       map(_r => _r.body)
     );
@@ -288,20 +287,16 @@ export module CategoriesService {
   /**
    * Parameters for ApiCategoriesByIdGet
    */
-   export interface ApiCategoriesByIdGetParams {
-
+  export interface ApiCategoriesByIdGetParams {
     id: number;
-
     fields?: string;
   }
 
   /**
    * Parameters for ApiCategoriesByIdPut
    */
-   export interface ApiCategoriesByIdPutParams {
-
+  export interface ApiCategoriesByIdPutParams {
     id: string;
-
     categoryDelta?: any;
   }
 }

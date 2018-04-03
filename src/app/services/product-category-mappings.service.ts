@@ -1,7 +1,7 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
 import {
-  HttpClient, HttpRequest, HttpResponse, 
+  HttpClient, HttpRequest, HttpResponse,
   HttpHeaders, HttpParams } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
@@ -12,7 +12,6 @@ import { filter } from 'rxjs/operators/filter';
 import { ProductCategoryMappingsRootObject } from '../models/product-category-mappings-root-object';
 import { ErrorsRootObject } from '../models/errors-root-object';
 import { ProductCategoryMappingsCountRootObject } from '../models/product-category-mappings-count-root-object';
-
 @Injectable()
 export class ProductCategoryMappingsService extends BaseService {
   constructor(
@@ -26,13 +25,13 @@ export class ProductCategoryMappingsService extends BaseService {
    * @param parameters undefined
    * @return Success
    */
-   ApiProduct_category_mappingsGetResponse(parameters?: any): Observable<HttpResponse<ProductCategoryMappingsRootObject>> {
+  ApiProduct_category_mappingsGetResponse(parameters?: any): Observable<HttpResponse<ProductCategoryMappingsRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (parameters != null) __params = __params.set("parameters", parameters.toString());
+    if (parameters != null) __params = __params.set('parameters', parameters.toString());
     let req = new HttpRequest<any>(
-      "GET",
+      'GET',
       this.rootUrl + `/api/product_category_mappings`,
       __body,
       {
@@ -56,7 +55,7 @@ export class ProductCategoryMappingsService extends BaseService {
    * @param parameters undefined
    * @return Success
    */
-   ApiProduct_category_mappingsGet(parameters?: any): Observable<ProductCategoryMappingsRootObject> {
+  ApiProduct_category_mappingsGet(parameters?: any): Observable<ProductCategoryMappingsRootObject> {
     return this.ApiProduct_category_mappingsGetResponse(parameters).pipe(
       map(_r => _r.body)
     );
@@ -66,13 +65,13 @@ export class ProductCategoryMappingsService extends BaseService {
    * @param productCategoryDelta undefined
    * @return Success
    */
-   ApiProduct_category_mappingsPostResponse(productCategoryDelta?: any): Observable<HttpResponse<ProductCategoryMappingsRootObject>> {
+  ApiProduct_category_mappingsPostResponse(productCategoryDelta?: any): Observable<HttpResponse<ProductCategoryMappingsRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (productCategoryDelta != null) __params = __params.set("productCategoryDelta", productCategoryDelta.toString());
+    if (productCategoryDelta != null) __params = __params.set('productCategoryDelta', productCategoryDelta.toString());
     let req = new HttpRequest<any>(
-      "POST",
+      'POST',
       this.rootUrl + `/api/product_category_mappings`,
       __body,
       {
@@ -96,7 +95,7 @@ export class ProductCategoryMappingsService extends BaseService {
    * @param productCategoryDelta undefined
    * @return Success
    */
-   ApiProduct_category_mappingsPost(productCategoryDelta?: any): Observable<ProductCategoryMappingsRootObject> {
+  ApiProduct_category_mappingsPost(productCategoryDelta?: any): Observable<ProductCategoryMappingsRootObject> {
     return this.ApiProduct_category_mappingsPostResponse(productCategoryDelta).pipe(
       map(_r => _r.body)
     );
@@ -106,13 +105,13 @@ export class ProductCategoryMappingsService extends BaseService {
    * @param parameters undefined
    * @return Success
    */
-   ApiProduct_category_mappingsCountGetResponse(parameters?: any): Observable<HttpResponse<ProductCategoryMappingsCountRootObject>> {
+  ApiProduct_category_mappingsCountGetResponse(parameters?: any): Observable<HttpResponse<ProductCategoryMappingsCountRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (parameters != null) __params = __params.set("parameters", parameters.toString());
+    if (parameters != null) __params = __params.set('parameters', parameters.toString());
     let req = new HttpRequest<any>(
-      "GET",
+      'GET',
       this.rootUrl + `/api/product_category_mappings/count`,
       __body,
       {
@@ -136,7 +135,7 @@ export class ProductCategoryMappingsService extends BaseService {
    * @param parameters undefined
    * @return Success
    */
-   ApiProduct_category_mappingsCountGet(parameters?: any): Observable<ProductCategoryMappingsCountRootObject> {
+  ApiProduct_category_mappingsCountGet(parameters?: any): Observable<ProductCategoryMappingsCountRootObject> {
     return this.ApiProduct_category_mappingsCountGetResponse(parameters).pipe(
       map(_r => _r.body)
     );
@@ -145,20 +144,20 @@ export class ProductCategoryMappingsService extends BaseService {
   /**
    * @param params The `ProductCategoryMappingsService.ApiProduct_category_mappingsByIdGetParams` containing the following parameters:
    *
-   * - `id`: 
+   * - `id`:
    *
-   * - `fields`: 
+   * - `fields`:
    *
    * @return Success
    */
-   ApiProduct_category_mappingsByIdGetResponse(params: ProductCategoryMappingsService.ApiProduct_category_mappingsByIdGetParams): Observable<HttpResponse<ProductCategoryMappingsRootObject>> {
+  ApiProduct_category_mappingsByIdGetResponse(params: ProductCategoryMappingsService.ApiProduct_category_mappingsByIdGetParams): Observable<HttpResponse<ProductCategoryMappingsRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
-    if (params.fields != null) __params = __params.set("fields", params.fields.toString());
+    if (params.fields != null) __params = __params.set('fields', params.fields.toString());
     let req = new HttpRequest<any>(
-      "GET",
+      'GET',
       this.rootUrl + `/api/product_category_mappings/${params.id}`,
       __body,
       {
@@ -181,13 +180,13 @@ export class ProductCategoryMappingsService extends BaseService {
   /**
    * @param params The `ProductCategoryMappingsService.ApiProduct_category_mappingsByIdGetParams` containing the following parameters:
    *
-   * - `id`: 
+   * - `id`:
    *
-   * - `fields`: 
+   * - `fields`:
    *
    * @return Success
    */
-   ApiProduct_category_mappingsByIdGet(params: ProductCategoryMappingsService.ApiProduct_category_mappingsByIdGetParams): Observable<ProductCategoryMappingsRootObject> {
+  ApiProduct_category_mappingsByIdGet(params: ProductCategoryMappingsService.ApiProduct_category_mappingsByIdGetParams): Observable<ProductCategoryMappingsRootObject> {
     return this.ApiProduct_category_mappingsByIdGetResponse(params).pipe(
       map(_r => _r.body)
     );
@@ -196,20 +195,20 @@ export class ProductCategoryMappingsService extends BaseService {
   /**
    * @param params The `ProductCategoryMappingsService.ApiProduct_category_mappingsByIdPutParams` containing the following parameters:
    *
-   * - `id`: 
+   * - `id`:
    *
-   * - `productCategoryDelta`: 
+   * - `productCategoryDelta`:
    *
    * @return Success
    */
-   ApiProduct_category_mappingsByIdPutResponse(params: ProductCategoryMappingsService.ApiProduct_category_mappingsByIdPutParams): Observable<HttpResponse<ProductCategoryMappingsRootObject>> {
+  ApiProduct_category_mappingsByIdPutResponse(params: ProductCategoryMappingsService.ApiProduct_category_mappingsByIdPutParams): Observable<HttpResponse<ProductCategoryMappingsRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
-    if (params.productCategoryDelta != null) __params = __params.set("productCategoryDelta", params.productCategoryDelta.toString());
+    if (params.productCategoryDelta != null) __params = __params.set('productCategoryDelta', params.productCategoryDelta.toString());
     let req = new HttpRequest<any>(
-      "PUT",
+      'PUT',
       this.rootUrl + `/api/product_category_mappings/${params.id}`,
       __body,
       {
@@ -232,13 +231,13 @@ export class ProductCategoryMappingsService extends BaseService {
   /**
    * @param params The `ProductCategoryMappingsService.ApiProduct_category_mappingsByIdPutParams` containing the following parameters:
    *
-   * - `id`: 
+   * - `id`:
    *
-   * - `productCategoryDelta`: 
+   * - `productCategoryDelta`:
    *
    * @return Success
    */
-   ApiProduct_category_mappingsByIdPut(params: ProductCategoryMappingsService.ApiProduct_category_mappingsByIdPutParams): Observable<ProductCategoryMappingsRootObject> {
+  ApiProduct_category_mappingsByIdPut(params: ProductCategoryMappingsService.ApiProduct_category_mappingsByIdPutParams): Observable<ProductCategoryMappingsRootObject> {
     return this.ApiProduct_category_mappingsByIdPutResponse(params).pipe(
       map(_r => _r.body)
     );
@@ -247,13 +246,13 @@ export class ProductCategoryMappingsService extends BaseService {
   /**
    * @param id undefined
    */
-   ApiProduct_category_mappingsByIdDeleteResponse(id: number): Observable<HttpResponse<void>> {
+  ApiProduct_category_mappingsByIdDeleteResponse(id: number): Observable<HttpResponse<void>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
-      "DELETE",
+      'DELETE',
       this.rootUrl + `/api/product_category_mappings/${id}`,
       __body,
       {
@@ -267,7 +266,7 @@ export class ProductCategoryMappingsService extends BaseService {
       map(_r => {
         let _resp = _r as HttpResponse<any>;
         let _body: void = null;
-        
+
         return _resp.clone({body: _body}) as HttpResponse<void>;
       })
     );
@@ -276,7 +275,7 @@ export class ProductCategoryMappingsService extends BaseService {
   /**
    * @param id undefined
    */
-   ApiProduct_category_mappingsByIdDelete(id: number): Observable<void> {
+  ApiProduct_category_mappingsByIdDelete(id: number): Observable<void> {
     return this.ApiProduct_category_mappingsByIdDeleteResponse(id).pipe(
       map(_r => _r.body)
     );
@@ -288,20 +287,16 @@ export module ProductCategoryMappingsService {
   /**
    * Parameters for ApiProduct_category_mappingsByIdGet
    */
-   export interface ApiProduct_category_mappingsByIdGetParams {
-
+  export interface ApiProduct_category_mappingsByIdGetParams {
     id: number;
-
     fields?: string;
   }
 
   /**
    * Parameters for ApiProduct_category_mappingsByIdPut
    */
-   export interface ApiProduct_category_mappingsByIdPutParams {
-
+  export interface ApiProduct_category_mappingsByIdPutParams {
     id: string;
-
     productCategoryDelta?: any;
   }
 }

@@ -63,7 +63,7 @@ import { CategoriesService } from './services/categories.service';
 import { CustomerRolesService } from './services/customer-roles.service';
 import { CustomersService } from './services/customers.service';
 import { LanguagesService } from './services/languages.service';
-import { ManageClientsAdminService } from './services/manage-clients-admin.service';
+//import { ManageClientsAdminService } from './services/manage-clients-admin.service';
 import { OrderItemsService } from './services/order-items.service';
 import { OrdersService } from './services/orders.service';
 import { ProductAttributesService } from './services/product-attributes.service';
@@ -135,7 +135,7 @@ import { AmountConverterPipe } from './Common/amountConverterPipe'
         CustomerRolesService,
         CustomersService,
         LanguagesService,
-        ManageClientsAdminService,
+        //ManageClientsAdminService,
         OrderItemsService,
         OrdersService,
         ProductAttributesService,

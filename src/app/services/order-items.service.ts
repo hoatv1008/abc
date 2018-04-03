@@ -1,7 +1,7 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
 import {
-  HttpClient, HttpRequest, HttpResponse, 
+  HttpClient, HttpRequest, HttpResponse,
   HttpHeaders, HttpParams } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
@@ -12,7 +12,6 @@ import { filter } from 'rxjs/operators/filter';
 import { OrderItemsRootObject } from '../models/order-items-root-object';
 import { ErrorsRootObject } from '../models/errors-root-object';
 import { OrderItemsCountRootObject } from '../models/order-items-count-root-object';
-
 @Injectable()
 export class OrderItemsService extends BaseService {
   constructor(
@@ -25,20 +24,20 @@ export class OrderItemsService extends BaseService {
   /**
    * @param params The `OrderItemsService.ApiOrdersByOrderIdItemsGetParams` containing the following parameters:
    *
-   * - `orderId`: 
+   * - `orderId`:
    *
-   * - `parameters`: 
+   * - `parameters`:
    *
    * @return Success
    */
-   ApiOrdersByOrderIdItemsGetResponse(params: OrderItemsService.ApiOrdersByOrderIdItemsGetParams): Observable<HttpResponse<OrderItemsRootObject>> {
+  ApiOrdersByOrderIdItemsGetResponse(params: OrderItemsService.ApiOrdersByOrderIdItemsGetParams): Observable<HttpResponse<OrderItemsRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
-    if (params.parameters != null) __params = __params.set("parameters", params.parameters.toString());
+    if (params.parameters != null) __params = __params.set('parameters', params.parameters.toString());
     let req = new HttpRequest<any>(
-      "GET",
+      'GET',
       this.rootUrl + `/api/orders/${params.orderId}/items`,
       __body,
       {
@@ -61,13 +60,13 @@ export class OrderItemsService extends BaseService {
   /**
    * @param params The `OrderItemsService.ApiOrdersByOrderIdItemsGetParams` containing the following parameters:
    *
-   * - `orderId`: 
+   * - `orderId`:
    *
-   * - `parameters`: 
+   * - `parameters`:
    *
    * @return Success
    */
-   ApiOrdersByOrderIdItemsGet(params: OrderItemsService.ApiOrdersByOrderIdItemsGetParams): Observable<OrderItemsRootObject> {
+  ApiOrdersByOrderIdItemsGet(params: OrderItemsService.ApiOrdersByOrderIdItemsGetParams): Observable<OrderItemsRootObject> {
     return this.ApiOrdersByOrderIdItemsGetResponse(params).pipe(
       map(_r => _r.body)
     );
@@ -76,20 +75,20 @@ export class OrderItemsService extends BaseService {
   /**
    * @param params The `OrderItemsService.ApiOrdersByOrderIdItemsPostParams` containing the following parameters:
    *
-   * - `orderId`: 
+   * - `orderId`:
    *
-   * - `orderItemDelta`: 
+   * - `orderItemDelta`:
    *
    * @return Success
    */
-   ApiOrdersByOrderIdItemsPostResponse(params: OrderItemsService.ApiOrdersByOrderIdItemsPostParams): Observable<HttpResponse<OrderItemsRootObject>> {
+  ApiOrdersByOrderIdItemsPostResponse(params: OrderItemsService.ApiOrdersByOrderIdItemsPostParams): Observable<HttpResponse<OrderItemsRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
-    if (params.orderItemDelta != null) __params = __params.set("orderItemDelta", params.orderItemDelta.toString());
+    if (params.orderItemDelta != null) __params = __params.set('orderItemDelta', params.orderItemDelta.toString());
     let req = new HttpRequest<any>(
-      "POST",
+      'POST',
       this.rootUrl + `/api/orders/${params.orderId}/items`,
       __body,
       {
@@ -112,13 +111,13 @@ export class OrderItemsService extends BaseService {
   /**
    * @param params The `OrderItemsService.ApiOrdersByOrderIdItemsPostParams` containing the following parameters:
    *
-   * - `orderId`: 
+   * - `orderId`:
    *
-   * - `orderItemDelta`: 
+   * - `orderItemDelta`:
    *
    * @return Success
    */
-   ApiOrdersByOrderIdItemsPost(params: OrderItemsService.ApiOrdersByOrderIdItemsPostParams): Observable<OrderItemsRootObject> {
+  ApiOrdersByOrderIdItemsPost(params: OrderItemsService.ApiOrdersByOrderIdItemsPostParams): Observable<OrderItemsRootObject> {
     return this.ApiOrdersByOrderIdItemsPostResponse(params).pipe(
       map(_r => _r.body)
     );
@@ -127,13 +126,13 @@ export class OrderItemsService extends BaseService {
   /**
    * @param orderId undefined
    */
-   ApiOrdersByOrderIdItemsDeleteResponse(orderId: number): Observable<HttpResponse<void>> {
+  ApiOrdersByOrderIdItemsDeleteResponse(orderId: number): Observable<HttpResponse<void>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
-      "DELETE",
+      'DELETE',
       this.rootUrl + `/api/orders/${orderId}/items`,
       __body,
       {
@@ -147,7 +146,7 @@ export class OrderItemsService extends BaseService {
       map(_r => {
         let _resp = _r as HttpResponse<any>;
         let _body: void = null;
-        
+
         return _resp.clone({body: _body}) as HttpResponse<void>;
       })
     );
@@ -156,7 +155,7 @@ export class OrderItemsService extends BaseService {
   /**
    * @param orderId undefined
    */
-   ApiOrdersByOrderIdItemsDelete(orderId: number): Observable<void> {
+  ApiOrdersByOrderIdItemsDelete(orderId: number): Observable<void> {
     return this.ApiOrdersByOrderIdItemsDeleteResponse(orderId).pipe(
       map(_r => _r.body)
     );
@@ -166,13 +165,13 @@ export class OrderItemsService extends BaseService {
    * @param orderId undefined
    * @return Success
    */
-   ApiOrdersByOrderIdItemsCountGetResponse(orderId: number): Observable<HttpResponse<OrderItemsCountRootObject>> {
+  ApiOrdersByOrderIdItemsCountGetResponse(orderId: number): Observable<HttpResponse<OrderItemsCountRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
-      "GET",
+      'GET',
       this.rootUrl + `/api/orders/${orderId}/items/count`,
       __body,
       {
@@ -196,7 +195,7 @@ export class OrderItemsService extends BaseService {
    * @param orderId undefined
    * @return Success
    */
-   ApiOrdersByOrderIdItemsCountGet(orderId: number): Observable<OrderItemsCountRootObject> {
+  ApiOrdersByOrderIdItemsCountGet(orderId: number): Observable<OrderItemsCountRootObject> {
     return this.ApiOrdersByOrderIdItemsCountGetResponse(orderId).pipe(
       map(_r => _r.body)
     );
@@ -205,23 +204,23 @@ export class OrderItemsService extends BaseService {
   /**
    * @param params The `OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdGetParams` containing the following parameters:
    *
-   * - `orderItemId`: 
+   * - `orderItemId`:
    *
-   * - `orderId`: 
+   * - `orderId`:
    *
-   * - `fields`: 
+   * - `fields`:
    *
    * @return Success
    */
-   ApiOrdersByOrderIdItemsByOrderItemIdGetResponse(params: OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdGetParams): Observable<HttpResponse<OrderItemsRootObject>> {
+  ApiOrdersByOrderIdItemsByOrderItemIdGetResponse(params: OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdGetParams): Observable<HttpResponse<OrderItemsRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
 
-    if (params.fields != null) __params = __params.set("fields", params.fields.toString());
+    if (params.fields != null) __params = __params.set('fields', params.fields.toString());
     let req = new HttpRequest<any>(
-      "GET",
+      'GET',
       this.rootUrl + `/api/orders/${params.orderId}/items/${params.orderItemId}`,
       __body,
       {
@@ -244,15 +243,15 @@ export class OrderItemsService extends BaseService {
   /**
    * @param params The `OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdGetParams` containing the following parameters:
    *
-   * - `orderItemId`: 
+   * - `orderItemId`:
    *
-   * - `orderId`: 
+   * - `orderId`:
    *
-   * - `fields`: 
+   * - `fields`:
    *
    * @return Success
    */
-   ApiOrdersByOrderIdItemsByOrderItemIdGet(params: OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdGetParams): Observable<OrderItemsRootObject> {
+  ApiOrdersByOrderIdItemsByOrderItemIdGet(params: OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdGetParams): Observable<OrderItemsRootObject> {
     return this.ApiOrdersByOrderIdItemsByOrderItemIdGetResponse(params).pipe(
       map(_r => _r.body)
     );
@@ -261,23 +260,23 @@ export class OrderItemsService extends BaseService {
   /**
    * @param params The `OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdPutParams` containing the following parameters:
    *
-   * - `orderItemId`: 
+   * - `orderItemId`:
    *
-   * - `orderId`: 
+   * - `orderId`:
    *
-   * - `orderItemDelta`: 
+   * - `orderItemDelta`:
    *
    * @return Success
    */
-   ApiOrdersByOrderIdItemsByOrderItemIdPutResponse(params: OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdPutParams): Observable<HttpResponse<OrderItemsRootObject>> {
+  ApiOrdersByOrderIdItemsByOrderItemIdPutResponse(params: OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdPutParams): Observable<HttpResponse<OrderItemsRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
 
-    if (params.orderItemDelta != null) __params = __params.set("orderItemDelta", params.orderItemDelta.toString());
+    if (params.orderItemDelta != null) __params = __params.set('orderItemDelta', params.orderItemDelta.toString());
     let req = new HttpRequest<any>(
-      "PUT",
+      'PUT',
       this.rootUrl + `/api/orders/${params.orderId}/items/${params.orderItemId}`,
       __body,
       {
@@ -300,15 +299,15 @@ export class OrderItemsService extends BaseService {
   /**
    * @param params The `OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdPutParams` containing the following parameters:
    *
-   * - `orderItemId`: 
+   * - `orderItemId`:
    *
-   * - `orderId`: 
+   * - `orderId`:
    *
-   * - `orderItemDelta`: 
+   * - `orderItemDelta`:
    *
    * @return Success
    */
-   ApiOrdersByOrderIdItemsByOrderItemIdPut(params: OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdPutParams): Observable<OrderItemsRootObject> {
+  ApiOrdersByOrderIdItemsByOrderItemIdPut(params: OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdPutParams): Observable<OrderItemsRootObject> {
     return this.ApiOrdersByOrderIdItemsByOrderItemIdPutResponse(params).pipe(
       map(_r => _r.body)
     );
@@ -317,18 +316,18 @@ export class OrderItemsService extends BaseService {
   /**
    * @param params The `OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdDeleteParams` containing the following parameters:
    *
-   * - `orderItemId`: 
+   * - `orderItemId`:
    *
    * - `orderId`:
    */
-   ApiOrdersByOrderIdItemsByOrderItemIdDeleteResponse(params: OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdDeleteParams): Observable<HttpResponse<void>> {
+  ApiOrdersByOrderIdItemsByOrderItemIdDeleteResponse(params: OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdDeleteParams): Observable<HttpResponse<void>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
 
     let req = new HttpRequest<any>(
-      "DELETE",
+      'DELETE',
       this.rootUrl + `/api/orders/${params.orderId}/items/${params.orderItemId}`,
       __body,
       {
@@ -342,7 +341,7 @@ export class OrderItemsService extends BaseService {
       map(_r => {
         let _resp = _r as HttpResponse<any>;
         let _body: void = null;
-        
+
         return _resp.clone({body: _body}) as HttpResponse<void>;
       })
     );
@@ -351,11 +350,11 @@ export class OrderItemsService extends BaseService {
   /**
    * @param params The `OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdDeleteParams` containing the following parameters:
    *
-   * - `orderItemId`: 
+   * - `orderItemId`:
    *
    * - `orderId`:
    */
-   ApiOrdersByOrderIdItemsByOrderItemIdDelete(params: OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdDeleteParams): Observable<void> {
+  ApiOrdersByOrderIdItemsByOrderItemIdDelete(params: OrderItemsService.ApiOrdersByOrderIdItemsByOrderItemIdDeleteParams): Observable<void> {
     return this.ApiOrdersByOrderIdItemsByOrderItemIdDeleteResponse(params).pipe(
       map(_r => _r.body)
     );
@@ -367,54 +366,42 @@ export module OrderItemsService {
   /**
    * Parameters for ApiOrdersByOrderIdItemsGet
    */
-   export interface ApiOrdersByOrderIdItemsGetParams {
-
+  export interface ApiOrdersByOrderIdItemsGetParams {
     orderId: number;
-
     parameters?: any;
   }
 
   /**
    * Parameters for ApiOrdersByOrderIdItemsPost
    */
-   export interface ApiOrdersByOrderIdItemsPostParams {
-
+  export interface ApiOrdersByOrderIdItemsPostParams {
     orderId: number;
-
     orderItemDelta?: any;
   }
 
   /**
    * Parameters for ApiOrdersByOrderIdItemsByOrderItemIdGet
    */
-   export interface ApiOrdersByOrderIdItemsByOrderItemIdGetParams {
-
+  export interface ApiOrdersByOrderIdItemsByOrderItemIdGetParams {
     orderItemId: number;
-
     orderId: number;
-
     fields?: string;
   }
 
   /**
    * Parameters for ApiOrdersByOrderIdItemsByOrderItemIdPut
    */
-   export interface ApiOrdersByOrderIdItemsByOrderItemIdPutParams {
-
+  export interface ApiOrdersByOrderIdItemsByOrderItemIdPutParams {
     orderItemId: number;
-
     orderId: number;
-
     orderItemDelta?: any;
   }
 
   /**
    * Parameters for ApiOrdersByOrderIdItemsByOrderItemIdDelete
    */
-   export interface ApiOrdersByOrderIdItemsByOrderItemIdDeleteParams {
-
+  export interface ApiOrdersByOrderIdItemsByOrderItemIdDeleteParams {
     orderItemId: number;
-
     orderId: number;
   }
 }

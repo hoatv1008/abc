@@ -1,7 +1,7 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
 import {
-  HttpClient, HttpRequest, HttpResponse, 
+  HttpClient, HttpRequest, HttpResponse,
   HttpHeaders, HttpParams } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
@@ -12,7 +12,6 @@ import { filter } from 'rxjs/operators/filter';
 import { CustomersRootObject } from '../models/customers-root-object';
 import { ErrorsRootObject } from '../models/errors-root-object';
 import { CustomersCountRootObject } from '../models/customers-count-root-object';
-
 @Injectable()
 export class CustomersService extends BaseService {
   constructor(
@@ -26,13 +25,13 @@ export class CustomersService extends BaseService {
    * @param parameters undefined
    * @return Success
    */
-   ApiCustomersGetResponse(parameters?: any): Observable<HttpResponse<CustomersRootObject>> {
+  ApiCustomersGetResponse(parameters?: any): Observable<HttpResponse<CustomersRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (parameters != null) __params = __params.set("parameters", parameters.toString());
+    if (parameters != null) __params = __params.set('parameters', parameters.toString());
     let req = new HttpRequest<any>(
-      "GET",
+      'GET',
       this.rootUrl + `/api/customers`,
       __body,
       {
@@ -56,7 +55,7 @@ export class CustomersService extends BaseService {
    * @param parameters undefined
    * @return Success
    */
-   ApiCustomersGet(parameters?: any): Observable<CustomersRootObject> {
+  ApiCustomersGet(parameters?: any): Observable<CustomersRootObject> {
     return this.ApiCustomersGetResponse(parameters).pipe(
       map(_r => _r.body)
     );
@@ -66,13 +65,13 @@ export class CustomersService extends BaseService {
    * @param customerDelta undefined
    * @return Success
    */
-   ApiCustomersPostResponse(customerDelta?: any): Observable<HttpResponse<CustomersRootObject>> {
+  ApiCustomersPostResponse(customerDelta?: any): Observable<HttpResponse<CustomersRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (customerDelta != null) __params = __params.set("customerDelta", customerDelta.toString());
+    if (customerDelta != null) __params = __params.set('customerDelta', customerDelta.toString());
     let req = new HttpRequest<any>(
-      "POST",
+      'POST',
       this.rootUrl + `/api/customers`,
       __body,
       {
@@ -96,7 +95,7 @@ export class CustomersService extends BaseService {
    * @param customerDelta undefined
    * @return Success
    */
-   ApiCustomersPost(customerDelta?: any): Observable<CustomersRootObject> {
+  ApiCustomersPost(customerDelta?: any): Observable<CustomersRootObject> {
     return this.ApiCustomersPostResponse(customerDelta).pipe(
       map(_r => _r.body)
     );
@@ -105,20 +104,20 @@ export class CustomersService extends BaseService {
   /**
    * @param params The `CustomersService.ApiCustomersByIdGetParams` containing the following parameters:
    *
-   * - `id`: 
+   * - `id`:
    *
-   * - `fields`: 
+   * - `fields`:
    *
    * @return Success
    */
-   ApiCustomersByIdGetResponse(params: CustomersService.ApiCustomersByIdGetParams): Observable<HttpResponse<CustomersRootObject>> {
+  ApiCustomersByIdGetResponse(params: CustomersService.ApiCustomersByIdGetParams): Observable<HttpResponse<CustomersRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
-    if (params.fields != null) __params = __params.set("fields", params.fields.toString());
+    if (params.fields != null) __params = __params.set('fields', params.fields.toString());
     let req = new HttpRequest<any>(
-      "GET",
+      'GET',
       this.rootUrl + `/api/customers/${params.id}`,
       __body,
       {
@@ -141,13 +140,13 @@ export class CustomersService extends BaseService {
   /**
    * @param params The `CustomersService.ApiCustomersByIdGetParams` containing the following parameters:
    *
-   * - `id`: 
+   * - `id`:
    *
-   * - `fields`: 
+   * - `fields`:
    *
    * @return Success
    */
-   ApiCustomersByIdGet(params: CustomersService.ApiCustomersByIdGetParams): Observable<CustomersRootObject> {
+  ApiCustomersByIdGet(params: CustomersService.ApiCustomersByIdGetParams): Observable<CustomersRootObject> {
     return this.ApiCustomersByIdGetResponse(params).pipe(
       map(_r => _r.body)
     );
@@ -156,20 +155,20 @@ export class CustomersService extends BaseService {
   /**
    * @param params The `CustomersService.ApiCustomersByIdPutParams` containing the following parameters:
    *
-   * - `id`: 
+   * - `id`:
    *
-   * - `customerDelta`: 
+   * - `customerDelta`:
    *
    * @return Success
    */
-   ApiCustomersByIdPutResponse(params: CustomersService.ApiCustomersByIdPutParams): Observable<HttpResponse<CustomersRootObject>> {
+  ApiCustomersByIdPutResponse(params: CustomersService.ApiCustomersByIdPutParams): Observable<HttpResponse<CustomersRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
-    if (params.customerDelta != null) __params = __params.set("customerDelta", params.customerDelta.toString());
+    if (params.customerDelta != null) __params = __params.set('customerDelta', params.customerDelta.toString());
     let req = new HttpRequest<any>(
-      "PUT",
+      'PUT',
       this.rootUrl + `/api/customers/${params.id}`,
       __body,
       {
@@ -192,13 +191,13 @@ export class CustomersService extends BaseService {
   /**
    * @param params The `CustomersService.ApiCustomersByIdPutParams` containing the following parameters:
    *
-   * - `id`: 
+   * - `id`:
    *
-   * - `customerDelta`: 
+   * - `customerDelta`:
    *
    * @return Success
    */
-   ApiCustomersByIdPut(params: CustomersService.ApiCustomersByIdPutParams): Observable<CustomersRootObject> {
+  ApiCustomersByIdPut(params: CustomersService.ApiCustomersByIdPutParams): Observable<CustomersRootObject> {
     return this.ApiCustomersByIdPutResponse(params).pipe(
       map(_r => _r.body)
     );
@@ -207,13 +206,13 @@ export class CustomersService extends BaseService {
   /**
    * @param id undefined
    */
-   ApiCustomersByIdDeleteResponse(id: number): Observable<HttpResponse<void>> {
+  ApiCustomersByIdDeleteResponse(id: number): Observable<HttpResponse<void>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
     let req = new HttpRequest<any>(
-      "DELETE",
+      'DELETE',
       this.rootUrl + `/api/customers/${id}`,
       __body,
       {
@@ -227,7 +226,7 @@ export class CustomersService extends BaseService {
       map(_r => {
         let _resp = _r as HttpResponse<any>;
         let _body: void = null;
-        
+
         return _resp.clone({body: _body}) as HttpResponse<void>;
       })
     );
@@ -236,7 +235,7 @@ export class CustomersService extends BaseService {
   /**
    * @param id undefined
    */
-   ApiCustomersByIdDelete(id: number): Observable<void> {
+  ApiCustomersByIdDelete(id: number): Observable<void> {
     return this.ApiCustomersByIdDeleteResponse(id).pipe(
       map(_r => _r.body)
     );
@@ -245,12 +244,12 @@ export class CustomersService extends BaseService {
   /**
    * @return Success
    */
-   ApiCustomersCountGetResponse(): Observable<HttpResponse<CustomersCountRootObject>> {
+  ApiCustomersCountGetResponse(): Observable<HttpResponse<CustomersCountRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     let req = new HttpRequest<any>(
-      "GET",
+      'GET',
       this.rootUrl + `/api/customers/count`,
       __body,
       {
@@ -273,7 +272,7 @@ export class CustomersService extends BaseService {
   /**
    * @return Success
    */
-   ApiCustomersCountGet(): Observable<CustomersCountRootObject> {
+  ApiCustomersCountGet(): Observable<CustomersCountRootObject> {
     return this.ApiCustomersCountGetResponse().pipe(
       map(_r => _r.body)
     );
@@ -283,13 +282,13 @@ export class CustomersService extends BaseService {
    * @param parameters undefined
    * @return Success
    */
-   ApiCustomersSearchGetResponse(parameters?: any): Observable<HttpResponse<CustomersRootObject>> {
+  ApiCustomersSearchGetResponse(parameters?: any): Observable<HttpResponse<CustomersRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (parameters != null) __params = __params.set("parameters", parameters.toString());
+    if (parameters != null) __params = __params.set('parameters', parameters.toString());
     let req = new HttpRequest<any>(
-      "GET",
+      'GET',
       this.rootUrl + `/api/customers/search`,
       __body,
       {
@@ -313,7 +312,7 @@ export class CustomersService extends BaseService {
    * @param parameters undefined
    * @return Success
    */
-   ApiCustomersSearchGet(parameters?: any): Observable<CustomersRootObject> {
+  ApiCustomersSearchGet(parameters?: any): Observable<CustomersRootObject> {
     return this.ApiCustomersSearchGetResponse(parameters).pipe(
       map(_r => _r.body)
     );
@@ -325,20 +324,16 @@ export module CustomersService {
   /**
    * Parameters for ApiCustomersByIdGet
    */
-   export interface ApiCustomersByIdGetParams {
-
+  export interface ApiCustomersByIdGetParams {
     id: number;
-
     fields?: string;
   }
 
   /**
    * Parameters for ApiCustomersByIdPut
    */
-   export interface ApiCustomersByIdPutParams {
-
+  export interface ApiCustomersByIdPutParams {
     id: string;
-
     customerDelta?: any;
   }
 }

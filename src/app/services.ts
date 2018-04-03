@@ -2,7 +2,7 @@ export { CategoriesService } from './services/categories.service';
 export { CustomerRolesService } from './services/customer-roles.service';
 export { CustomersService } from './services/customers.service';
 export { LanguagesService } from './services/languages.service';
-export { ManageClientsAdminService } from './services/manage-clients-admin.service';
+//export { ManageClientsAdminService } from './services/manage-clients-admin.service';
 export { OrderItemsService } from './services/order-items.service';
 export { OrdersService } from './services/orders.service';
 export { ProductAttributesService } from './services/product-attributes.service';

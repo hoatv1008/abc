@@ -1,7 +1,7 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
 import {
-  HttpClient, HttpRequest, HttpResponse, 
+  HttpClient, HttpRequest, HttpResponse,
   HttpHeaders, HttpParams } from '@angular/common/http';
 import { BaseService } from '../base-service';
 import { ApiConfiguration } from '../api-configuration';
@@ -11,7 +11,6 @@ import { filter } from 'rxjs/operators/filter';
 
 import { StoresRootObject } from '../models/stores-root-object';
 import { ErrorsRootObject } from '../models/errors-root-object';
-
 @Injectable()
 export class StoreService extends BaseService {
   constructor(
@@ -25,13 +24,13 @@ export class StoreService extends BaseService {
    * @param fields undefined
    * @return Success
    */
-   ApiCurrent_storeGetResponse(fields?: string): Observable<HttpResponse<StoresRootObject>> {
+  ApiCurrent_storeGetResponse(fields?: string): Observable<HttpResponse<StoresRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (fields != null) __params = __params.set("fields", fields.toString());
+    if (fields != null) __params = __params.set('fields', fields.toString());
     let req = new HttpRequest<any>(
-      "GET",
+      'GET',
       this.rootUrl + `/api/current_store`,
       __body,
       {
@@ -55,7 +54,7 @@ export class StoreService extends BaseService {
    * @param fields undefined
    * @return Success
    */
-   ApiCurrent_storeGet(fields?: string): Observable<StoresRootObject> {
+  ApiCurrent_storeGet(fields?: string): Observable<StoresRootObject> {
     return this.ApiCurrent_storeGetResponse(fields).pipe(
       map(_r => _r.body)
     );
@@ -65,13 +64,13 @@ export class StoreService extends BaseService {
    * @param fields undefined
    * @return Success
    */
-   ApiStoresGetResponse(fields?: string): Observable<HttpResponse<StoresRootObject>> {
+  ApiStoresGetResponse(fields?: string): Observable<HttpResponse<StoresRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
-    if (fields != null) __params = __params.set("fields", fields.toString());
+    if (fields != null) __params = __params.set('fields', fields.toString());
     let req = new HttpRequest<any>(
-      "GET",
+      'GET',
       this.rootUrl + `/api/stores`,
       __body,
       {
@@ -95,7 +94,7 @@ export class StoreService extends BaseService {
    * @param fields undefined
    * @return Success
    */
-   ApiStoresGet(fields?: string): Observable<StoresRootObject> {
+  ApiStoresGet(fields?: string): Observable<StoresRootObject> {
     return this.ApiStoresGetResponse(fields).pipe(
       map(_r => _r.body)
     );
