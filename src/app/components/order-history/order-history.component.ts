@@ -8,7 +8,7 @@ import { OrderDto } from '../../models/order-dto';
 @Component({
     selector: 'ngx-orderhistory',
     templateUrl: './order-history.component.html',
-    styleUrls: ['./order-history.component.scss'],
+    styleUrls: ['./order-history.component.css'],
 })
 export class OrderHistoryComponent {
     displayedColumns = ['id', 'customer_language_id', 'customer',
