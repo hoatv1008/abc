@@ -56,9 +56,10 @@ export class SOSummaryComponent implements OnInit {
     releaseSalesOrder() {
         localStorage.setItem(this.so.id + '_salesInvoice', JSON.stringify(this.so));
         //this.orderDelta = this.ordersService.getSampleData();
-        this.submit(this.orderDelta).subscribe(r => this.orderDelta = r);
+        this.submit(this.so).subscribe();
     }
     submit(val: OrderDtoVM): Observable<OrderDtoVM[]> {
+        debugger
         return this.ordersService.ApiOrdersCreatePost(val).map(r => {
             return r.orders;
         });

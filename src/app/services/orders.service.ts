@@ -12,6 +12,7 @@ import { filter } from 'rxjs/operators/filter';
 import { OrdersRootObject } from '../models/orders-root-object';
 import { ErrorsRootObject } from '../models/errors-root-object';
 import { OrdersCountRootObject } from '../models/orders-count-root-object';
+import { OrderDto } from '../models';
 @Injectable()
 export class OrdersService extends BaseService {
   constructor(
@@ -252,7 +253,7 @@ export class OrdersService extends BaseService {
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/orders/customer/${customer_id}`,
+        this.rootUrl + `/api/orders/customer/${customerId}`,
       __body,
       {
         headers: __headers,
@@ -285,7 +286,8 @@ export class OrdersService extends BaseService {
    * @param orderDelta undefined
    * @return Success
    */
-  ApiOrdersCreatePostResponse(orderDelta?: Delta[OrderDto]): Observable<HttpResponse<OrdersRootObject>> {
+    ApiOrdersCreatePostResponse(orderDelta?: OrderDto): Observable<HttpResponse<OrdersRootObject>> {
+        debugger
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -315,7 +317,7 @@ export class OrdersService extends BaseService {
    * @param orderDelta undefined
    * @return Success
    */
-  ApiOrdersCreatePost(orderDelta?: Delta[OrderDto]): Observable<OrdersRootObject> {
+    ApiOrdersCreatePost(orderDelta?: OrderDto): Observable<OrdersRootObject> {
     return this.ApiOrdersCreatePostResponse(orderDelta).pipe(
       map(_r => _r.body)
     );

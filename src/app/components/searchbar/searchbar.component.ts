@@ -31,7 +31,7 @@ export class SOSearchbarComponent implements OnInit {
     }
 
     filter(val: string): Observable<ProductDto[]> {
-        return this.catalog.ApiProductsGet().map(r => {
+        return this.catalog.ApiProductsSearchGet().map(r => {
             return r.products;
         });
     }

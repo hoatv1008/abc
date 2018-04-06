@@ -18,11 +18,11 @@
             <th scope="row">{{item.product.name}}</th>
             <th scope="row" class="text-right">
                 <input type="number" class="text-right" [ngModel]="item.price_incl_tax"
-                       (ngModelChange)="item.price_incl_tax=$event" style="max-width:100px; border: none" (keyup)="onChange(item)" />
+                       (ngModelChange)="item.price_incl_tax=$event" style="max-width:100px; border: none;border-bottom:1px #e9ecef solid" (keyup)="onChange(item)" />
             </th>
             <th scope="row" class="text-right">
                 <input type="number" class="text-right" [ngModel]="item.quantity"
-                       (ngModelChange)="item.quantity=$event" style="max-width:70px; border: none" (keyup)="onChange(item)" />
+                       (ngModelChange)="item.quantity=$event" style="max-width:70px; border: none; border-bottom:1px #e9ecef solid" (keyup)="onChange(item)" />
             </th>
             <th scope="row" class="text-right" style="padding-right:20px">{{item.total_amount}}</th>
         </tr>

@@ -32,7 +32,7 @@ export class ProductsService extends BaseService {
     if (parameters != null) __params = __params.set('parameters', parameters.toString());
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/products/search`,
+        this.rootUrl + `/api/products/search`,
       __body,
       {
         headers: __headers,
