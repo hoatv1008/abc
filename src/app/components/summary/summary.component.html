@@ -38,14 +38,14 @@
       <mat-list-item>
           <b>Tổng tiền</b>
           <span class="side-spacer"></span>
-          {{so.order_total}}
+          {{so.order_total | amountConverter}}
       </mat-list-item>
       <mat-divider></mat-divider>
       <mat-list-item>
           Khách hàng đưa
           <span class="side-spacer"></span>
           <mat-form-field>
-              <input matInput type="number" class="right" value="{{so.order_total}}" />
+              <input matInput type="number" class="right" value="{{so.order_total | amountConverter}}" />
           </mat-form-field>
       </mat-list-item>
       <mat-divider></mat-divider>
