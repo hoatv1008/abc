@@ -1,7 +1,6 @@
 .main-container {
     width: 100%;
     height: 100%;
-    
 }
 
 .main-sidenav-content {
@@ -60,14 +59,15 @@ app-so-summary {
     flex-wrap: wrap;
     align-content: space-between;
 }
-/deep/ .order-container {
-    .table-header {
-        mat-form-field {
-            padding-top:10px;
-            background: none;
-        }
-    }
+
+/deep/ .order-container .table-header mat-form-field {
+    padding-top: 10px;
+    background: none;
 }
+
 form > mat-form-field .mat-form-field-underline {
     display: none !important;
+}
+/deep/ .order-container .table-header mat-form-field .mat-input-element {
+    color: #333;
 }

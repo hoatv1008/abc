@@ -13,6 +13,7 @@ import { OrdersRootObject } from '../models/orders-root-object';
 import { ErrorsRootObject } from '../models/errors-root-object';
 import { OrdersCountRootObject } from '../models/orders-count-root-object';
 import { OrderDto } from '../models';
+import { OrderDtoVM } from '../models/order-dto-vm';
 @Injectable()
 export class OrdersService extends BaseService {
   constructor(
@@ -286,8 +287,7 @@ export class OrdersService extends BaseService {
    * @param orderDelta undefined
    * @return Success
    */
-    ApiOrdersCreatePostResponse(orderDelta?: OrderDto): Observable<HttpResponse<OrdersRootObject>> {
-        debugger
+    ApiOrdersCreatePostResponse(orderDelta?: OrderDtoVM): Observable<HttpResponse<OrdersRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -317,7 +317,7 @@ export class OrdersService extends BaseService {
    * @param orderDelta undefined
    * @return Success
    */
-    ApiOrdersCreatePost(orderDelta?: OrderDto): Observable<OrdersRootObject> {
+    ApiOrdersCreatePost(orderDelta?: OrderDtoVM): Observable<OrdersRootObject> {
     return this.ApiOrdersCreatePostResponse(orderDelta).pipe(
       map(_r => _r.body)
     );

@@ -15,17 +15,5 @@ export class AmountConverterPipe implements PipeTransform {
         number = this.utils.removeChar(String(value));
         number = this.utils.formatCurrencyWithDot(number);
         return number;
-        //value = String(value).replace(/\./g,'');
-        //value = this.utils.removeChar(String(value));
-        //   value = String(value).replace(/[^0-9.%]/g, '').replace(/(\..*)\./g, '$1').replace(/\./g, '');
-        //  try {
-        //   let number = Intl.NumberFormat('en-us', {
-        //     minimumFractionDigits: 0
-        //   }).format(Number(value));
-        //   return number.replace(/,/g, '.');
-        //  } catch (error) {
-        //    return '0';
-        //  }
-        // return number;
     }
 }

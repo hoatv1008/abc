@@ -1,6 +1,5 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { ItemHeaderService } from '../../services/item-header.service';
-import { MatTableDataSource, MatSort } from '@angular/material';
 import { OrderItemDto } from '../../models';
 import { OrderDtoVM } from '../../models/order-dto-vm';
 import { Element } from '@angular/compiler';
@@ -56,24 +55,10 @@ export class SOLinesComponent implements OnInit {
             n.total_amount = this.utils.removeChar(String(n.quantity)) * this.utils.removeChar(String(n.price_incl_tax));
             this.so.order_total += n.total_amount;
         });
+        this.so.pay_amount = this.so.order_total;
+        this.so.return_amount = 0;
     }
-    //onChange(item): void {
-    //    item.total_amount = item.price_incl_tax * item.quantity;
-    //    this.calSummany();
-    //}
-    onChange(item): void {
-        let quantity = item.quantity;
-        let price_incl_tax = item.price_incl_tax;
-        if (String(quantity).length === 0) {
-            quantity = 0;
-        }
-        if (String(price_incl_tax).length === 0) {
-            price_incl_tax = 0;
-        }
-        quantity = this.utils.removeChar(String(quantity));
-        price_incl_tax = this.utils.removeChar(String(price_incl_tax));       
-        item.quantity = this.utils.formatCurrencyWithDot(quantity);
-        item.price_incl_tax = this.utils.formatCurrencyWithDot(price_incl_tax);        
+    onChange(item): void {        
         this.calSummany();
     }
 }

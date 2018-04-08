@@ -5,9 +5,8 @@
         <mat-toolbar color="primary">
             <app-searchbar></app-searchbar>
             <span class="side-spacer"></span>
-            <i class="material-icons">shopping_cart</i> <span class="header-title"><a href="#" style="color: #fff;text-decoration: none;">Bán hàng</a></span>
+            <i class="material-icons">shopping_cart</i> <span class="header-title"><a routerLink="" style="color: #fff;text-decoration: none;">Bán hàng</a></span>
             <span class="icon-spacer"></span>
-            <mat-icon>language</mat-icon> <span class="header-title">Ngôn ngữ</span>
             <span class="icon-spacer"></span>
             <mat-icon>exit_to_app</mat-icon>
         </mat-toolbar>
@@ -15,7 +14,7 @@
             <div class="order-container">
                 <div class="table-header">
                     <mat-form-field>
-                        <input matInput (keyup)="filter($event.target.value)" placeholder="Tìm kiếm" style="background-color:none">
+                        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Tìm kiếm" >
                     </mat-form-field>
                 </div>
                 <mat-table #table [dataSource]="dataSource" matSort>
@@ -30,9 +29,6 @@
                         <mat-header-cell *matHeaderCellDef> Mã khách hàng </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.customer.id}} </mat-cell>
                     </ng-container>
-
-
-
                     <!-- Weight Column -->
                     <ng-container matColumnDef="customer">
                         <mat-header-cell *matHeaderCellDef> Tên khách hàng </mat-header-cell>
@@ -41,16 +37,15 @@
                     <!-- Symbol Column -->
                     <ng-container matColumnDef="paid_date_utc">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Ngày đặt hàng </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.paid_date_utc}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.paid_date_utc | date}} </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="order_status">
-                        t-
                         <mat-header-cell *matHeaderCellDef>Trạng thái</mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.order_status}} </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="order_total">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Thành tiền </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.order_total}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.order_total | amountConverter}} </mat-cell>
                     </ng-container>
 
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
@@ -58,8 +53,7 @@
                 </mat-table>
 
                 <mat-paginator #paginator
-                               [pageSize]="10"
-                               [pageSizeOptions]="[5, 10, 20]"
+                               [pageSize]="5"
                                [showFirstLastButtons]="true">
                 </mat-paginator>
             </div>

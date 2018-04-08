@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
             customer_points: 0
         }
         soNew.id = 'SOD' + Math.floor(Math.random() * 99999);
+        soNew.order_status  = 'Complete';
         let oldSO = this.lstSO.filter(n => n.selected == true)[0];
         if (oldSO)
             oldSO.selected = false;

@@ -1,13 +1,14 @@
-import { Component,Input, Output, OnInit, EventEmitter } from '@angular/core';
+import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
-import { CustomersService, OrdersService} from '../../services';
+import { CustomersService, OrdersService } from '../../services';
 import { ItemHeaderService } from '../../services/item-header.service';
 import { CustomersRootObject, OrderItemDto, OrderCustomerDto } from '../../models';
 import { OrderDtoVM } from '../../models/order-dto-vm';
 import { OrderCustomerVM } from '../../models/order-customer-dto-vm';
+import { UtilsService } from '../../Common/utils.service';
 @Component({
     selector: 'app-so-summary',
     templateUrl: './summary.component.html',
@@ -15,28 +16,30 @@ import { OrderCustomerVM } from '../../models/order-customer-dto-vm';
 })
 export class SOSummaryComponent implements OnInit {
     customerSearch: FormControl = new FormControl();
-    customers: OrderCustomerDto[];
+    customers: Observable<OrderCustomerDto[]>;
     @Input() so: OrderDtoVM;
     @Output() summaryChange = new EventEmitter<OrderDtoVM>();
+    lstCustomer = JSON.parse(localStorage.getItem('lstCustomers'));
     constructor(private customerService: CustomersService,
         private itemHeaderService: ItemHeaderService,
-        private ordersService: OrdersService) {
+        private ordersService: OrdersService,
+        private utils: UtilsService) {
     }
-    orderDelta: any;
-    customerPay: number = 0;
+
     ngOnInit() {
-        this.customerSearch.valueChanges
-            .subscribe(keyword => {
-                this.filter(keyword).subscribe(r => this.customers = r);
-            });        
+        this.customers = this.customerSearch.valueChanges
+            .pipe(
+            startWith(''),
+            map(val => this.filter(val))
+            );
     }
 
-    filter(val: string): Observable<OrderCustomerDto[]> {
-        return this.customerService.ApiCustomersGet().map(r => {
-            return r.customers;
-        });
+    filter(val: string): OrderCustomerDto[] {
+        return this.lstCustomer.filter(item =>
+            (val && item.first_name && item.first_name.toLowerCase().indexOf(val) === 0) ||
+            (val && item.last_name && item.last_name.toLowerCase().indexOf(val) === 0)
+        )
     }
-
     displayCustomerOption(c: OrderCustomerDto) {
         if (c == null) {
             return '';
@@ -55,13 +58,11 @@ export class SOSummaryComponent implements OnInit {
     }
     releaseSalesOrder() {
         localStorage.setItem(this.so.id + '_salesInvoice', JSON.stringify(this.so));
-        //this.orderDelta = this.ordersService.getSampleData();
-        this.submit(this.so).subscribe();
+        this.ordersService.ApiOrdersCreatePost(this.so).subscribe(r => {
+            console.log(r.orders);
+        })
     }
-    submit(val: OrderDtoVM): Observable<OrderDtoVM[]> {
-        debugger
-        return this.ordersService.ApiOrdersCreatePost(val).map(r => {
-            return r.orders;
-        });
+    onChange(item): void {
+        this.so.return_amount = this.utils.removeChar(this.so.pay_amount) - this.so.order_total;
     }
 }

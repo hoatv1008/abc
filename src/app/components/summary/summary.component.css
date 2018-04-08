@@ -27,3 +27,7 @@
     margin: 0 auto;
 }
 .right { text-align: right }
+/deep/ mat-toolbar[_ngcontent-c1] {
+    height: auto;
+min-height:50px;
+}

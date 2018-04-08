@@ -5,4 +5,6 @@ export class OrderDtoVM extends OrderDto  {
     selected?: boolean;
     customer?: OrderCustomerVM;
     order_items?: Array<OrderItemVM>;
+    pay_amount: number;
+    return_amount: number;
 }

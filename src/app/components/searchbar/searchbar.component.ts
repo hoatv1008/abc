@@ -3,10 +3,8 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
-// import { of } from 'rxjs/observable/of';
 import { ProductsService } from '../../services';
 import { ItemHeaderService } from '../../services/item-header.service';
-
 import { ProductDto, ProductsRootObjectDto } from '../../models';
 
 @Component({
@@ -17,23 +15,24 @@ import { ProductDto, ProductsRootObjectDto } from '../../models';
 export class SOSearchbarComponent implements OnInit {
 
     productSearch: FormControl = new FormControl();
-    products: ProductDto[];
-
-    constructor(private catalog: ProductsService, private itemHeaderService: ItemHeaderService) {
-
+    products: Observable<ProductDto[]>;
+    lstProducts = JSON.parse(localStorage.getItem('lstProducts'));
+    constructor(private productService: ProductsService, private itemHeaderService: ItemHeaderService) {
     }
 
     ngOnInit() {
-        this.productSearch.valueChanges
-            .subscribe(keyword => {
-                this.filter(keyword).subscribe(r => this.products = r);
-            });
+        this.products = this.productSearch.valueChanges
+            .pipe(
+            startWith(''),
+            map(val => this.filter(val))
+            );
     }
 
-    filter(val: string): Observable<ProductDto[]> {
-        return this.catalog.ApiProductsSearchGet().map(r => {
-            return r.products;
-        });
+    filter(val: string): ProductDto[] {
+        return this.lstProducts.filter(item =>
+            (val && item.name && item.name.toLowerCase().indexOf(val) === 0) ||
+            (val && item.sku && item.sku.toLowerCase().indexOf(val) === 0)
+        )
     }
 
     productSelected(c: ProductDto) {

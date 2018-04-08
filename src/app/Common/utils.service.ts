@@ -309,7 +309,7 @@ export class UtilsService {
   /**
    * removeChar
    */
-  public removeChar(value: string): number {
+  public removeChar(value: any): number {
     value = value.replace(/[^0-9.%]/g, '').replace(/(\..*)\./g, '$1');
     value = this.getRawVal(value);
     return Number(value);
