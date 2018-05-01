@@ -75,6 +75,7 @@ import { ItemHeaderService } from './services/item-header.service';
 import { UtilsService } from '../app/Common/utils.service';
 import { CurrencyFormatterDirective } from './Common/currency-formatter.directive';
 import { AmountConverterPipe } from './Common/amountConverterPipe';
+import { PrintComponent } from './components/print/print.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -85,7 +86,8 @@ import { AmountConverterPipe } from './Common/amountConverterPipe';
         SOLinesComponent,
         SOSummaryComponent,
         CurrencyFormatterDirective,   
-        AmountConverterPipe
+        AmountConverterPipe,
+        PrintComponent
     ],
     imports: [
         BrowserModule,

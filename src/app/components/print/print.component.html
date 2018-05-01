@@ -1,0 +1,78 @@
+<div id="print-section" class="wrap-print-container" style="font-family: monospace;">
+
+    <div class="wrap-report-order" style="line-height:1.32;">
+
+        <div class="text-center">
+            <p id="customerName">Của hàng Hà My</p>
+            <p>25 Man Thiện, Hiệp phú, Quân 9, TP.HCM</p>
+        </div>
+
+        <p class="text-center text-uppercase bold heading2">Hóa đơn bán hàng</p>
+        <table class="">
+            <colgroup>
+                <col width="1" />
+                <col width="100%" />
+            </colgroup>
+            <tbody>
+                <tr class="order-id">
+                    <td class="text-nowrap">Mã đơn hàng:</td>
+                    <td>{{so.salesOrderCode}}</td>
+                </tr>
+                <tr class="cus-name">
+                    <td class="text-nowrap">Khách hàng:</td>
+                    <td>{{so.customerName}}</td>
+                </tr>
+
+                <tr class="admin-name">
+                    <td class="text-nowrap">Nhân viên:</td>
+                    <td></td>
+                </tr>
+                <tr class="order-time">
+                    <td class="text-nowrap">Ngày:</td>
+                    <td>{{so.orderDate | date:'dd-MM-yyyy HH:mm'}}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table1" style="border-bottom: 1px dashed;">
+            <thead style="border-bottom:1px dashed">
+                <tr>
+                    <th>S.Phẩm</th>
+                    <th class="text-center">SL</th>
+                    <th class="text-center">Giá</th>
+                    <th class="text-center">T.Tiền</th>
+                </tr>
+            </thead>
+            <tbody class="list-print-items" *ngFor="let item of so.orderItems; let i = index">
+                <tr class="prod-name">
+                    <td colspan="5">{{item.productName}}</td>
+                </tr>
+                <tr class="prod-body">
+                    <td>&nbsp;</td>
+                    <td class="text-right prod-qty">{{item.quantity | amountConverter}}</td>
+                    <td class="text-right prod-price">{{item.unitPrice | amountConverter}}</td>
+                    <td class="text-right prod-temp-amount">{{item.totalAmount | amountConverter}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <tbody class="print-summary">
+                <tr class="print-Sub-total-amount">
+                    <td><strong>Tổng tiền:</strong></td>
+                    <td class="text-right bold"><strong>{{so.totalAmount | amountConverter}}</strong></td>
+                </tr>
+                <tr class="print-total-loyati">
+                    <td><strong>Khách đưa:</strong></td>
+                    <td class="text-right bold"><strong>{{so.payAmount | amountConverter}}</strong></td>
+                </tr>
+                <tr class="print-total-loyati">
+                    <td><strong>Trả lại khách:</strong></td>
+                    <td class="text-right bold"><strong>{{so.returnAmount | amountConverter}}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+        <p style="font-style: italic;" class="text-center bold">Cảm ơn, hẹn gặp lại!</p>
+    </div>
+</div>
+
+

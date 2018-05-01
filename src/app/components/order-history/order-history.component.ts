@@ -10,8 +10,8 @@ import { OrderDto } from '../../models';
     styleUrls: ['./order-history.component.css'],
 })
 export class OrderHistoryComponent {
-    displayedColumns = ['id', 'customer_language_id', 'customer',
-        'paid_date_utc', 'order_status', 'order_total'];
+    displayedColumns = ['salesOrderCode','customerName',
+        'orderDate', 'orderStatus', 'totalAmount'];
     dataSource = new MatTableDataSource<any>();
     @ViewChild(MatPaginator) paginator: MatPaginator;
     @ViewChild(MatSort) sort: MatSort;
@@ -25,7 +25,7 @@ export class OrderHistoryComponent {
     
     ngOnInit() {
         this.ordersService.ApiOrdersGet().subscribe(r => {
-            this.dataSource = new MatTableDataSource<any>(r.orders);
+            this.dataSource = new MatTableDataSource<any>(r.result.items);
         })
     }
     ngAfterViewInit() {

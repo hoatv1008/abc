@@ -11,15 +11,15 @@
         </tr>
     </thead>
     <tbody>
-        <tr class="table-light" *ngFor="let item of so.order_items; let i = index">
+        <tr class="table-light" *ngFor="let item of so.orderItems; let i = index">
             <th scope="row" style="width:30px;"><i class="material-icons" (click)="onDeleteItem(item)" style="font-size:25px; color:red; font-weight:bold; cursor:pointer">clear</i></th>
             <th scope="row">{{i}}</th>
-            <th scope="row">{{item.product.sku}}</th>
-            <th scope="row">{{item.product.name}}</th>
+            <th scope="row">{{item.productCode}}</th>
+            <th scope="row">{{item.productName}}</th>
             <th scope="row" class="text-right">
             <input type="text" class="text-right" 
-                   appCurrencyFormatter [ngModel]="item.price_incl_tax" 
-                   (ngModelChange)="item.price_incl_tax=$event" 
+                   appCurrencyFormatter [ngModel]="item.unitPrice" 
+                   (ngModelChange)="item.unitPrice=$event" 
                    style="max-width:70px; border: none;border-bottom:1px #e9ecef solid" 
                    (keyup)="onChange(item)" />
             </th>
@@ -30,7 +30,7 @@
                    (keyup)="onChange(item)" /></th>
 
 
-            <th scope="row" class="text-right" style="padding-right:20px;">{{item.total_amount | amountConverter}}</th>
+            <th scope="row" class="text-right" style="padding-right:20px;">{{item.totalAmount | amountConverter}}</th>
         </tr>
     </tbody>
 </table>

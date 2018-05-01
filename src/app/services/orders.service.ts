@@ -13,7 +13,6 @@ import { OrdersRootObject } from '../models/orders-root-object';
 import { ErrorsRootObject } from '../models/errors-root-object';
 import { OrdersCountRootObject } from '../models/orders-count-root-object';
 import { OrderDto } from '../models';
-import { OrderDtoVM } from '../models/order-dto-vm';
 @Injectable()
 export class OrdersService extends BaseService {
   constructor(
@@ -34,7 +33,7 @@ export class OrdersService extends BaseService {
     if (parameters != null) __params = __params.set('parameters', parameters.toString());
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/orders`,
+        this.rootUrl + `/api/services/app/OrderSevice/GetAll`,
       __body,
       {
         headers: __headers,
@@ -57,7 +56,7 @@ export class OrdersService extends BaseService {
    * @param parameters undefined
    * @return Success
    */
-  ApiOrdersGet(parameters?: any): Observable<OrdersRootObject> {
+    ApiOrdersGet(parameters?: any): Observable<any> {
     return this.ApiOrdersGetResponse(parameters).pipe(
       map(_r => _r.body)
     );
@@ -67,7 +66,7 @@ export class OrdersService extends BaseService {
    * @param parameters undefined
    * @return Success
    */
-  ApiOrdersCountGetResponse(parameters?: any): Observable<HttpResponse<OrdersCountRootObject>> {
+    ApiOrdersCountGetResponse(parameters?: any): Observable<HttpResponse<any>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -287,14 +286,14 @@ export class OrdersService extends BaseService {
    * @param orderDelta undefined
    * @return Success
    */
-    ApiOrdersCreatePostResponse(orderDelta?: OrderDtoVM): Observable<HttpResponse<OrdersRootObject>> {
+    ApiOrdersCreatePostResponse(orderDelta?: OrderDto): Observable<HttpResponse<OrdersRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     __body = orderDelta;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/api/orders/create`,
+        this.rootUrl + `/api/services/app/OrderSevice/Create`,
       __body,
       {
         headers: __headers,
@@ -317,7 +316,7 @@ export class OrdersService extends BaseService {
    * @param orderDelta undefined
    * @return Success
    */
-    ApiOrdersCreatePost(orderDelta?: OrderDtoVM): Observable<OrdersRootObject> {
+    ApiOrdersCreatePost(orderDelta?: OrderDto): Observable<OrdersRootObject> {
     return this.ApiOrdersCreatePostResponse(orderDelta).pipe(
       map(_r => _r.body)
     );

@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { of } from 'rxjs/observable/of';
 import { CategoriesService } from "../../services";
-import { CategoriesRootObject, CategoryDto } from "../../models";
-import { OrderDtoVM } from '../../models/order-dto-vm';
+import { CategoriesRootObject, CategoryDto, OrderDto } from "../../models";
 import { ItemHeaderService } from '../../services/item-header.service';
 
 @Component({
@@ -13,8 +12,8 @@ import { ItemHeaderService } from '../../services/item-header.service';
 })
 export class HomeComponent implements OnInit {
 
-    lstSO = new Array<OrderDtoVM>();
-    currentSO = new OrderDtoVM();
+    lstSO = new Array<OrderDto>();
+    currentSO = new OrderDto();
     customerPay: number = 0;
     constructor(private itemHeaderService: ItemHeaderService) { }
 
@@ -28,30 +27,27 @@ export class HomeComponent implements OnInit {
         this.currentSO = newSo;
     }
     createSO() {
-        let soNew = new OrderDtoVM();
-        soNew.customer = {
-            first_name: 'Khach hang vang lai',
-            id: '010101010',
-            last_name: '',
-            customer_points: 0
-        }
-        soNew.id = 'SOD' + Math.floor(Math.random() * 99999);
-        soNew.order_status  = 'Complete';
+        let soNew = new OrderDto();
+        soNew.customerId = 1;
+        soNew.customerName = "Vang lai";
+        soNew.orderDate = new Date();
+        soNew.salesOrderCode = 'SOD' + Math.floor(Math.random() * 99999);
+        soNew.orderStatus = 'Complete';
         let oldSO = this.lstSO.filter(n => n.selected == true)[0];
         if (oldSO)
             oldSO.selected = false;
         soNew.selected = true;
-        soNew.order_items = [];        
+        soNew.orderItems = [];        
         return soNew;
     }
-    selectSO(so: OrderDtoVM){
+    selectSO(so: OrderDto){
         let oldSO = this.lstSO.filter(n => n.selected == true)[0];
         if (oldSO)
             oldSO.selected = false;
         so.selected = true;
         this.currentSO = so;
     }
-    removeSO(so: OrderDtoVM) {
+    removeSO(so: OrderDto) {
         if (this.lstSO.length <= 1) {
             this.lstSO = [];
             this.addSO();

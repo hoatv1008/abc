@@ -8,9 +8,9 @@
       <mat-option *ngFor="let p of products | async" [value]="p" (onSelectionChange)="productSelected(p)">
         
         <div class="sm-list-search-results-item">
-          <div > <b>{{ p.name }}</b></div>
-          <div ><span> Mã SP:   <b class="sku">{{p.sku}}</b></span>
-            <span> Giá:  <b class="price text-highlight" data-is-currency="">{{p.price}}</b></span>
+          <div > <b>{{ p.productName }}</b></div>
+          <div ><span> Mã SP:   <b class="sku">{{p.code}}</b></span>
+            <span> Giá:  <b class="price text-highlight" data-is-currency="">{{p.price | amountConverter}}</b></span>
           </div>
         </div>
         <mat-divider></mat-divider>

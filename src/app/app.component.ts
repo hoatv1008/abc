@@ -16,11 +16,11 @@ export class AppComponent implements OnInit {
     }
     res : any
     ngOnInit() {
-        this.customerService.ApiCustomersGet().subscribe(r => {
-            localStorage.setItem('lstCustomers', JSON.stringify(r.customers));
+        this.customerService.getListCustomer().subscribe(r => {
+            localStorage.setItem('lstCustomers', JSON.stringify(r.body.result.items));
         });
-        this.productService.ApiProductsSearchGet().subscribe(r => {
-            localStorage.setItem('lstProducts', JSON.stringify(r.products));
+        this.productService.getListProduct().subscribe(r => {
+            localStorage.setItem('lstProducts', JSON.stringify(r.body.result.items));
         });
     }
    

@@ -30,8 +30,8 @@ export class SOSearchbarComponent implements OnInit {
 
     filter(val: string): ProductDto[] {
         return this.lstProducts.filter(item =>
-            (val && item.name && item.name.toLowerCase().indexOf(val) === 0) ||
-            (val && item.sku && item.sku.toLowerCase().indexOf(val) === 0)
+            (val && item.productName && item.productName.toLowerCase().indexOf(val) === 0) ||
+            (val && item.code && item.code.toLowerCase().indexOf(val) === 0)
         )
     }
 

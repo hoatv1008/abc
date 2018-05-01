@@ -5,40 +5,23 @@
         <mat-autocomplete autoActiveFirstOption [displayWith]="displayCustomerOption" #auto="matAutocomplete">
             <mat-option *ngFor="let c of customers | async" [value]="c" (onSelectionChange)="customerSelected(c)">
                 <div class="sm-list-search-results-item">
-                    <div class="line"> <b class="title">{{ c.first_name + ' ' + c.last_name }}</b></div>
+                    <div class="line"> <b class="title">{{ c.customerName }}</b></div>
                     <mat-divider></mat-divider>
                 </div>
             </mat-option>
         </mat-autocomplete>
     </mat-form-field>
     <mat-list>
-        <mat-list-item>Khách hàng: <span class="side-spacer"></span>{{ so.customer.first_name + ' ' + so.customer.last_name }}</mat-list-item>
-        <mat-divider></mat-divider>
-        <mat-list-item>Điểm tích luỹ: <span class="side-spacer"></span>{{so.customer.customer_points}}</mat-list-item>
+        <mat-list-item>Khách hàng: <span class="side-spacer"></span>{{ so.customerName }}</mat-list-item>
         <mat-divider></mat-divider>
     </mat-list>
 </div>
 <mat-list class="bottom-spacer">
-    <mat-list-item>
-        Thành tiền
-        <span class="side-spacer"></span>
-        {{so.order_total | amountConverter}}
-    </mat-list-item>
-    <mat-divider></mat-divider>
-    <!--<mat-list-item>
-      Đổi điểm &nbsp;
-      <mat-form-field class="point-exchanged">
-        <input matInput type="number" class="right" value="{{so.customer.exchangedPoints}}" />
-      </mat-form-field>
-      ({{so.customer.exchangedRate}}đ / Điểm)
-      <span class="side-spacer"></span>
-      {{so.customer.exchangedPoints * currentSO.exchangedRate}}
-    </mat-list-item>-->
-    <mat-divider></mat-divider>
+
     <mat-list-item>
         <b>Tổng tiền</b>
         <span class="side-spacer"></span>
-        {{so.order_total | amountConverter}}
+        {{so.totalAmount | amountConverter}}
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item>
@@ -47,8 +30,8 @@
 
         <input matInput class="right"
                type="text"
-               appCurrencyFormatter [ngModel]="so.pay_amount"
-               (ngModelChange)="so.pay_amount=$event" style="border-bottom:1px #e9ecef solid"
+               appCurrencyFormatter [ngModel]="so.payAmount"
+               (ngModelChange)="so.payAmount=$event" style="border-bottom:1px #e9ecef solid"
                (keyup)="onChange()" />
 
     </mat-list-item>
@@ -56,12 +39,12 @@
     <mat-list-item>
         Tiền thừa trả lại khách
         <span class="side-spacer"></span>
-        {{so.return_amount | amountConverter}}
+        {{so.returnAmount | amountConverter}}
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item>
         <mat-form-field floatLabel="never">
-            <textarea placeholder="Ghi chú" type="text" matInput>{{so.customer.checkout_attribute_description}}</textarea>
+            <textarea placeholder="Ghi chú" type="text" matInput>{{so.notes}}</textarea>
         </mat-form-field>
     </mat-list-item>
     <mat-divider></mat-divider>

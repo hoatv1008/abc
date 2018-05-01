@@ -19,33 +19,33 @@
                 </div>
                 <mat-table #table [dataSource]="dataSource" matSort>
                     <!-- Position Column -->
-                    <ng-container matColumnDef="id">
+                    <ng-container matColumnDef="salesOrderCode">
                         <mat-header-cell *matHeaderCellDef> Số đơn hàng </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.salesOrderCode}} </mat-cell>
                     </ng-container>
 
                     <!-- Name Column -->
-                    <ng-container matColumnDef="customer_language_id">
+                    <!--<ng-container matColumnDef="customerId">
                         <mat-header-cell *matHeaderCellDef> Mã khách hàng </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.customer.id}} </mat-cell>
-                    </ng-container>
+                        <mat-cell *matCellDef="let element"> {{element.customerId}} </mat-cell>
+                    </ng-container>-->
                     <!-- Weight Column -->
-                    <ng-container matColumnDef="customer">
+                    <ng-container matColumnDef="customerName">
                         <mat-header-cell *matHeaderCellDef> Tên khách hàng </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.customer.first_name + ' ' + element.customer.last_name}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.customerName}} </mat-cell>
                     </ng-container>
                     <!-- Symbol Column -->
-                    <ng-container matColumnDef="paid_date_utc">
+                    <ng-container matColumnDef="orderDate">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Ngày đặt hàng </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.paid_date_utc | date}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.orderDate | date:'dd/MM/yyyy'}} </mat-cell>
                     </ng-container>
-                    <ng-container matColumnDef="order_status">
+                    <ng-container matColumnDef="orderStatus">
                         <mat-header-cell *matHeaderCellDef>Trạng thái</mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.order_status}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.orderStatus}} </mat-cell>
                     </ng-container>
-                    <ng-container matColumnDef="order_total">
+                    <ng-container matColumnDef="totalAmount">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Thành tiền </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.order_total | amountConverter}} </mat-cell>
+                        <mat-cell *matCellDef="let element"> {{element.totalAmount | amountConverter}} </mat-cell>
                     </ng-container>
 
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

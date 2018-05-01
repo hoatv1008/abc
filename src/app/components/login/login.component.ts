@@ -4,9 +4,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
     error = '';
@@ -20,16 +20,13 @@ export class LoginComponent implements OnInit {
     ngOnInit() {
         // reset login status
         this.authenticationService.logout();
-        if (this.route.snapshot.queryParams.code == null) {
-            this.authenticationService.authorize();
-        }
-        else {
-            this.login(this.route.snapshot.queryParams.code);
-        }
+
+        this.login(this.route.snapshot.queryParams.code);
+
     }
 
     login(code) {
-         this.authenticationService.login(code)
+        this.authenticationService.login()
             .subscribe(result => {
                 if (result === true) {
                     // login successful

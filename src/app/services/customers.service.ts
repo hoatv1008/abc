@@ -316,7 +316,30 @@ export class CustomersService extends BaseService {
     return this.ApiCustomersSearchGetResponse(parameters).pipe(
       map(_r => _r.body)
     );
-  }
+    }
+    getListCustomer() {
+        let __params = this.newParams();
+        let __headers = new HttpHeaders();
+        let __body: any = null;
+        let req = new HttpRequest<any>(
+            'GET',
+            this.rootUrl + `/api/services/app/CustomerService/GetAll`,
+            __body,
+            {
+                headers: __headers,
+                params: __params,
+                responseType: 'json'
+            });
+
+        return this.http.request<any>(req).pipe(
+            filter(_r => _r instanceof HttpResponse),
+            map(_r => {
+                let _resp = _r as HttpResponse<any>;
+                return _resp;
+            })
+        );
+
+    }
 }
 
 export module CustomersService {
