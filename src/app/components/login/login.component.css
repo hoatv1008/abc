@@ -1,0 +1,45 @@
+
+.login-page {
+    max-width: 350px;
+    background-color: #f8f9fa;
+    margin: 5% auto;
+    overflow-x: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2)
+}
+
+    .login-page .logo {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+        .login-page .logo img {
+            max-width: 120px;
+        }
+
+.custom-form-login .logo img {
+    max-width: 200px;
+}
+
+.custom-form-login .logo {
+    margin-bottom: 30px;
+}
+
+.custom-form-login {
+    padding: 30px;
+    height: 400px;
+    background-color: #fff;
+   
+}
+
+
+.input-group {
+    margin-bottom: 10px;
+}
+
+    .input-group .input-group-addon {
+        padding: 7px;
+    }
+
+    .input-group .form-line input {
+        width: 120%
+    }

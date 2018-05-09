@@ -60,5 +60,9 @@ export class HomeComponent implements OnInit {
             this.currentSO = this.lstSO[0];
         }
     }
-
+    logout() {
+        localStorage.removeItem('currentUser');
+        window.location.reload();
+    }
+    
 }

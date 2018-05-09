@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
-import { AuthenticationService } from '../../services/authentication.service';
-
+import { AuthenticationService, AuthenticateModel } from '../../services/authentication.service';
+import { FormControl } from '@angular/forms';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+    styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
     error = '';
+    user: AuthenticateModel = null;
 
     constructor(
         private router: Router,
@@ -18,15 +18,13 @@ export class LoginComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        // reset login status
+        this.user = new AuthenticateModel();
+        this.user.userNameOrEmailAddress = '';
         this.authenticationService.logout();
-
-        this.login(this.route.snapshot.queryParams.code);
-
     }
 
-    login(code) {
-        this.authenticationService.login()
+    login() {
+        this.authenticationService.login(this.user)
             .subscribe(result => {
                 if (result === true) {
                     // login successful

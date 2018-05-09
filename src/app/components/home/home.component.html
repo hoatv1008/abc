@@ -32,7 +32,7 @@
             <span class="icon-spacer"></span>
             <mat-icon>help</mat-icon>
             <span class="icon-spacer"></span>
-            <mat-icon>exit_to_app</mat-icon>
+            <mat-icon (click)="logout()" style="cursor:pointer">exit_to_app</mat-icon>
         </mat-toolbar>
         <app-so-summary [(so)]="currentSO"></app-so-summary>
     </mat-sidenav>

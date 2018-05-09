@@ -743,7 +743,7 @@ var AppModule = /** @class */ (function () {
             ],
             providers: [
                 __WEBPACK_IMPORTED_MODULE_17__app_guards__["a" /* AuthGuard */],
-                __WEBPACK_IMPORTED_MODULE_19__services_authentication_service__["a" /* AuthenticationService */],
+                __WEBPACK_IMPORTED_MODULE_19__services_authentication_service__["b" /* AuthenticationService */],
                 __WEBPACK_IMPORTED_MODULE_20__api_configuration__["a" /* ApiConfiguration */],
                 __WEBPACK_IMPORTED_MODULE_21__services_categories_service__["a" /* CategoriesService */],
                 __WEBPACK_IMPORTED_MODULE_22__services_customer_roles_service__["a" /* CustomerRolesService */],
@@ -884,7 +884,7 @@ module.exports = ".main-container {\r\n    width: 100%;\r\n    height: 100%;\r\n
 /***/ "./src/app/components/home/home.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<mat-sidenav-container class=\"main-container\" autosize>\r\n    <div class=\"main-sidenav-content\">\r\n        <mat-toolbar color=\"primary\">\r\n            <app-searchbar></app-searchbar>\r\n            <span class=\"side-spacer\"></span>\r\n            <mat-icon>history</mat-icon> <span class=\"header-title\">\r\n                <a routerLink=\"soh\" style=\"color: #fff;text-decoration: none;\">Lịch sử đơn hàng</a>\r\n            </span>\r\n            <span class=\"icon-spacer\"></span>\r\n            <!--<mat-icon>language</mat-icon> <span class=\"header-title\">Ngôn ngữ</span>-->\r\n        </mat-toolbar>\r\n        <mat-toolbar>\r\n            <mat-chip-list>\r\n                <mat-chip *ngFor=\"let so of lstSO;let i = index\" color=\"{{so.selected?'primary':'secondary'}}\"\r\n                          selected=\"{{so.selected}}\" (click)=\"selectSO(so)\">\r\n                    Đơn hàng {{i + 1}}\r\n                    <mat-icon matChipRemove (click)=\"removeSO(so)\">cancel</mat-icon>\r\n                </mat-chip>\r\n\r\n                <mat-chip color=\"secondary\" style=\"cursor:pointer\" (click)=\"addSO()\">\r\n                    +\r\n                </mat-chip>\r\n            </mat-chip-list>\r\n        </mat-toolbar>\r\n        <app-so-lines [(so)]=\"currentSO\"></app-so-lines>\r\n    </div>\r\n    <mat-sidenav #sidebar class=\"main-sidenav mat-elevation-z7\" mode=\"side\" position=\"end\" opened>\r\n        <mat-toolbar color=\"primary\">\r\n            <mat-icon class=\"account-icon md-48\">account_circle</mat-icon>\r\n            <span class=\"side-spacer\"></span>\r\n            <mat-icon>backup</mat-icon>\r\n            <span class=\"icon-spacer\"></span>\r\n            <mat-icon>help</mat-icon>\r\n            <span class=\"icon-spacer\"></span>\r\n            <mat-icon>exit_to_app</mat-icon>\r\n        </mat-toolbar>\r\n        <app-so-summary [(so)]=\"currentSO\"></app-so-summary>\r\n    </mat-sidenav>\r\n</mat-sidenav-container>\r\n<app-print [(so)]=\"currentSO\"></app-print>"
+module.exports = "<mat-sidenav-container class=\"main-container\" autosize>\r\n    <div class=\"main-sidenav-content\">\r\n        <mat-toolbar color=\"primary\">\r\n            <app-searchbar></app-searchbar>\r\n            <span class=\"side-spacer\"></span>\r\n            <mat-icon>history</mat-icon> <span class=\"header-title\">\r\n                <a routerLink=\"soh\" style=\"color: #fff;text-decoration: none;\">Lịch sử đơn hàng</a>\r\n            </span>\r\n            <span class=\"icon-spacer\"></span>\r\n            <!--<mat-icon>language</mat-icon> <span class=\"header-title\">Ngôn ngữ</span>-->\r\n        </mat-toolbar>\r\n        <mat-toolbar>\r\n            <mat-chip-list>\r\n                <mat-chip *ngFor=\"let so of lstSO;let i = index\" color=\"{{so.selected?'primary':'secondary'}}\"\r\n                          selected=\"{{so.selected}}\" (click)=\"selectSO(so)\">\r\n                    Đơn hàng {{i + 1}}\r\n                    <mat-icon matChipRemove (click)=\"removeSO(so)\">cancel</mat-icon>\r\n                </mat-chip>\r\n\r\n                <mat-chip color=\"secondary\" style=\"cursor:pointer\" (click)=\"addSO()\">\r\n                    +\r\n                </mat-chip>\r\n            </mat-chip-list>\r\n        </mat-toolbar>\r\n        <app-so-lines [(so)]=\"currentSO\"></app-so-lines>\r\n    </div>\r\n    <mat-sidenav #sidebar class=\"main-sidenav mat-elevation-z7\" mode=\"side\" position=\"end\" opened>\r\n        <mat-toolbar color=\"primary\">\r\n            <mat-icon class=\"account-icon md-48\">account_circle</mat-icon>\r\n            <span class=\"side-spacer\"></span>\r\n            <mat-icon>backup</mat-icon>\r\n            <span class=\"icon-spacer\"></span>\r\n            <mat-icon>help</mat-icon>\r\n            <span class=\"icon-spacer\"></span>\r\n            <mat-icon (click)=\"logout()\" style=\"cursor:pointer\">exit_to_app</mat-icon>\r\n        </mat-toolbar>\r\n        <app-so-summary [(so)]=\"currentSO\"></app-so-summary>\r\n    </mat-sidenav>\r\n</mat-sidenav-container>\r\n<app-print [(so)]=\"currentSO\"></app-print>"
 
 /***/ }),
 
@@ -958,6 +958,10 @@ var HomeComponent = /** @class */ (function () {
             this.lstSO[0].selected = true;
             this.currentSO = this.lstSO[0];
         }
+    };
+    HomeComponent.prototype.logout = function () {
+        localStorage.removeItem('currentUser');
+        window.location.reload();
     };
     HomeComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -1093,14 +1097,14 @@ var SOLinesComponent = /** @class */ (function () {
 /***/ "./src/app/components/login/login.component.css":
 /***/ (function(module, exports) {
 
-module.exports = ""
+module.exports = "\r\n.login-page {\r\n    max-width: 350px;\r\n    background-color: #f8f9fa;\r\n    margin: 5% auto;\r\n    overflow-x: hidden;\r\n    -webkit-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);\r\n            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2)\r\n}\r\n\r\n    .login-page .logo {\r\n        text-align: center;\r\n        margin-bottom: 50px;\r\n    }\r\n\r\n    .login-page .logo img {\r\n            max-width: 120px;\r\n        }\r\n\r\n    .custom-form-login .logo img {\r\n    max-width: 200px;\r\n}\r\n\r\n    .custom-form-login .logo {\r\n    margin-bottom: 30px;\r\n}\r\n\r\n    .custom-form-login {\r\n    padding: 30px;\r\n    height: 400px;\r\n    background-color: #fff;\r\n   \r\n}\r\n\r\n    .input-group {\r\n    margin-bottom: 10px;\r\n}\r\n\r\n    .input-group .input-group-addon {\r\n        padding: 7px;\r\n    }\r\n\r\n    .input-group .form-line input {\r\n        width: 120%\r\n    }\r\n"
 
 /***/ }),
 
 /***/ "./src/app/components/login/login.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<p>\r\n  login page!\r\n</p>\r\n"
+module.exports = "<div id=\"LoginArea\" class=\"login-page\">\r\n    <div #cardBody class=\"body\">\r\n        <div class=\"container-fluid\">\r\n           \r\n            <div class=\"text-center align-items-center row\">\r\n                <div class=\"col-lg-12 col-md-12 col-sm-6 col-xs-12 custom-form-login\">\r\n                    <div class=\"logo text-uppercase\" style=\"text-align: center; margin-top: 20px\">\r\n                        <img alt=\"VNPOST\" src=\"../../assets/images/logo1.png\">\r\n                    </div>\r\n                    <form>\r\n                        <div class=\"input-group\">\r\n                            <span class=\"input-group-addon\">\r\n                                <i class=\"material-icons\">person</i>\r\n                            </span>\r\n                            <div class=\"form-line\">\r\n                                <input materialInput [(ngModel)]=\"user.userNameOrEmailAddress\" autoFocus class=\"form-control\" type=\"text\" autocomplete=\"off\" placeholder=\"Tên đăng nhập\" name=\"userNameOrEmailAddress\" required maxlength=\"255\" />\r\n                            </div>\r\n                        </div>\r\n\r\n                        <div class=\"input-group\">\r\n                            <span class=\"input-group-addon\">\r\n                                <i class=\"material-icons\">lock</i>\r\n                            </span>\r\n                            <div class=\"form-line\">\r\n                                <input materialInput type=\"password\" [(ngModel)]=\"user.password\" class=\"form-control\" name=\"password\" placeholder=\"Mật khẩu\" required maxlength=\"32\">\r\n                            </div>\r\n                        </div>\r\n                        <div class=\"row\" style=\"padding:5px 0px 0 27px\">\r\n                            <div class=\"col-xs-8 p-t-5\">\r\n                                <input type=\"checkbox\" [(ngModel)]=\"user.rememberClient\" name=\"rememberMe\" id=\"rememberme\" class=\"filled-in chk-col-pink\" value=\"true\">\r\n                                <label for=\"rememberme\">Ghi nhớ tài khoản</label>\r\n                            </div>\r\n                            <div class=\"col-xs-4\">\r\n                                <button id=\"LoginButton\" style=\"margin-left: 9px;\" class=\"btn btn-block bg-pink waves-effect\" type=\"submit\" (click)=\"login()\">Đăng nhập</button>\r\n                            </div>\r\n                        </div>\r\n                    </form>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </div>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -1130,15 +1134,16 @@ var LoginComponent = /** @class */ (function () {
         this.authenticationService = authenticationService;
         this.route = route;
         this.error = '';
+        this.user = null;
     }
     LoginComponent.prototype.ngOnInit = function () {
-        // reset login status
+        this.user = new __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticateModel */]();
+        this.user.userNameOrEmailAddress = '';
         this.authenticationService.logout();
-        this.login(this.route.snapshot.queryParams.code);
     };
-    LoginComponent.prototype.login = function (code) {
+    LoginComponent.prototype.login = function () {
         var _this = this;
-        this.authenticationService.login()
+        this.authenticationService.login(this.user)
             .subscribe(function (result) {
             if (result === true) {
                 // login successful
@@ -1154,10 +1159,10 @@ var LoginComponent = /** @class */ (function () {
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
             selector: 'app-login',
             template: __webpack_require__("./src/app/components/login/login.component.html"),
-            styles: [__webpack_require__("./src/app/components/login/login.component.css")]
+            styles: [__webpack_require__("./src/app/components/login/login.component.css")],
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_router__["b" /* Router */],
-            __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["a" /* AuthenticationService */],
+            __WEBPACK_IMPORTED_MODULE_2__services_authentication_service__["b" /* AuthenticationService */],
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* ActivatedRoute */]])
     ], LoginComponent);
     return LoginComponent;
@@ -1661,7 +1666,8 @@ var ProductDto = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthenticationService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return AuthenticationService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthenticateModel; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__("./node_modules/@angular/http/esm5/http.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__api_configuration__ = __webpack_require__("./src/app/api-configuration.ts");
@@ -1691,15 +1697,12 @@ var AuthenticationService = /** @class */ (function () {
         var url = this.apiConfig.rootUrl + '/oauth/authorize?client_id=' + this.apiConfig.clientId + '&redirect_uri=' + encodeURI('http://localhost:4200/login') + '&response_type=code';
         window.location.href = url;
     };
-    AuthenticationService.prototype.login = function () {
+    AuthenticationService.prototype.login = function (u) {
         var _this = this;
-        var formData = new FormData();
-        formData.append('usernameOrEmailAddress', 'admin');
-        formData.append('password', '123qwe');
-        formData.append('redirect_uri', this.apiConfig.callbackUrl);
         return this.http.post(this.apiConfig.rootUrl + '/api/TokenAuth/Authenticate', {
-            usernameOrEmailAddress: 'admin',
-            password: '123qwe'
+            usernameOrEmailAddress: u.userNameOrEmailAddress,
+            password: u.password,
+            rememberClient: u.rememberClient
         }, { headers: new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]({ 'Content-Type': 'application/json' }) }).map(function (response) {
             // login successful if there's a jwt token in the response
             var token = response.json().result && response.json().result.accessToken;
@@ -1730,6 +1733,25 @@ var AuthenticationService = /** @class */ (function () {
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["c" /* Http */], __WEBPACK_IMPORTED_MODULE_2__api_configuration__["a" /* ApiConfiguration */]])
     ], AuthenticationService);
     return AuthenticationService;
+}());
+
+var AuthenticateModel = /** @class */ (function () {
+    function AuthenticateModel() {
+    }
+    AuthenticateModel.prototype.init = function (data) {
+        if (data) {
+            this.userNameOrEmailAddress = data["userNameOrEmailAddress"];
+            this.password = data["password"];
+            this.rememberClient = data["rememberClient"];
+        }
+    };
+    AuthenticateModel.fromJS = function (data) {
+        data = typeof data === 'object' ? data : {};
+        var result = new AuthenticateModel();
+        result.init(data);
+        return result;
+    };
+    return AuthenticateModel;
 }());
 
 
@@ -4171,7 +4193,7 @@ var TokenInterceptor = /** @class */ (function () {
     };
     TokenInterceptor = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["C" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__authentication_service__["a" /* AuthenticationService */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__authentication_service__["b" /* AuthenticationService */]])
     ], TokenInterceptor);
     return TokenInterceptor;
 }());

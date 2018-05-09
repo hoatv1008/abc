@@ -20,16 +20,12 @@ export class AuthenticationService {
         window.location.href = url;
     }
 
-    login(): Observable<boolean> {
-        let formData: FormData = new FormData();
-        formData.append('usernameOrEmailAddress', 'admin');
-        formData.append('password', '123qwe');
-        formData.append('redirect_uri', this.apiConfig.callbackUrl);
-
+    login(u: AuthenticateModel): Observable<boolean> {
         return this.http.post(this.apiConfig.rootUrl + '/api/TokenAuth/Authenticate',
             {
-                usernameOrEmailAddress: 'admin',
-                password: '123qwe'
+                usernameOrEmailAddress: u.userNameOrEmailAddress,
+                password: u.password,
+                rememberClient: u.rememberClient
             },
             { headers: new Headers({ 'Content-Type': 'application/json' }) }).map((response: Response) => {
                 // login successful if there's a jwt token in the response
@@ -57,5 +53,25 @@ export class AuthenticationService {
 
     getToken(): string {
         return this.token;
+    }
+}
+export class AuthenticateModel {
+    userNameOrEmailAddress: string;
+    password: string;
+    rememberClient: boolean | undefined;
+
+    init(data?: any) {
+        if (data) {
+            this.userNameOrEmailAddress = data["userNameOrEmailAddress"];
+            this.password = data["password"];
+            this.rememberClient = data["rememberClient"];
+        }
+    }
+
+    static fromJS(data: any): AuthenticateModel {
+        data = typeof data === 'object' ? data : {};
+        let result = new AuthenticateModel();
+        result.init(data);
+        return result;
     }
 }
