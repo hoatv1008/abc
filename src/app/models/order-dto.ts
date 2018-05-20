@@ -3,6 +3,7 @@ import { OrderCustomerDto } from './order-customer-dto';
 import { AddressDto } from './address-dto';
 import { OrderItemDto } from './order-item-dto';
 export class OrderDto {
+    id: number;
     salesOrderCode: string;
     customerId: number;
     orderDate: Date;

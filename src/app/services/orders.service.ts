@@ -111,15 +111,14 @@ export class OrdersService extends BaseService {
    *
    * @return Success
    */
-  ApiOrdersByIdGetResponse(params: OrdersService.ApiOrdersByIdGetParams): Observable<HttpResponse<OrdersRootObject>> {
+    ApiOrdersByIdGetResponse(params: OrderDto): Observable<HttpResponse<OrdersRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
-    if (params.fields != null) __params = __params.set('fields', params.fields.toString());
     let req = new HttpRequest<any>(
-      'GET',
-      this.rootUrl + `/api/orders/${params.id}`,
+        'GET',
+        this.rootUrl + "/api/services/app/OrderSevice/Get?Id=" + params.id,
       __body,
       {
         headers: __headers,
@@ -147,7 +146,7 @@ export class OrdersService extends BaseService {
    *
    * @return Success
    */
-  ApiOrdersByIdGet(params: OrdersService.ApiOrdersByIdGetParams): Observable<OrdersRootObject> {
+    ApiOrdersByIdGet(params: OrderDto): Observable<any> {
     return this.ApiOrdersByIdGetResponse(params).pipe(
       map(_r => _r.body)
     );

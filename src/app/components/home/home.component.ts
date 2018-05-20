@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { of } from 'rxjs/observable/of';
-import { CategoriesService } from "../../services";
+import { CategoriesService, OrdersService } from "../../services";
 import { CategoriesRootObject, CategoryDto, OrderDto } from "../../models";
 import { ItemHeaderService } from '../../services/item-header.service';
 
@@ -11,15 +11,27 @@ import { ItemHeaderService } from '../../services/item-header.service';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+    @Output() viewDetailSO = new EventEmitter<OrderDto>();
     lstSO = new Array<OrderDto>();
     currentSO = new OrderDto();
     customerPay: number = 0;
-    constructor(private itemHeaderService: ItemHeaderService) { }
+    constructor(private itemHeaderService: ItemHeaderService, private ordersService: OrdersService) { }
 
     ngOnInit() {        
         this.currentSO = this.createSO();
-        this.lstSO.push(this.currentSO);        
+        this.lstSO.push(this.currentSO);
+        this.itemHeaderService.currentDetailSO.subscribe((item) => {
+            if (item) {
+                this.ordersService.ApiOrdersByIdGet(item).subscribe(n => {
+                    if (n && n.result) {
+                        this.lstSO.push(n.result);
+                        this.selectSO(n.result);
+                        return true;
+                    }
+                })
+                
+            }
+        });
     }
     addSO() {
         let newSo = this.createSO();
@@ -32,7 +44,7 @@ export class HomeComponent implements OnInit {
         soNew.customerName = "Vang lai";
         soNew.orderDate = new Date();
         soNew.salesOrderCode = 'SOD' + Math.floor(Math.random() * 99999);
-        soNew.orderStatus = 'Complete';
+        soNew.orderStatus = 'New';
         let oldSO = this.lstSO.filter(n => n.selected == true)[0];
         if (oldSO)
             oldSO.selected = false;

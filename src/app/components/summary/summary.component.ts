@@ -49,6 +49,7 @@ export class SOSummaryComponent implements OnInit {
         this.customerSearch.setValue('');
     }
     releaseSalesOrder() {
+        this.so.orderStatus = 'Complete';
         localStorage.setItem(this.so.salesOrderCode + '_salesInvoice', JSON.stringify(this.so));
         this.ordersService.ApiOrdersCreatePost(this.so).subscribe(r => {
             this.printSO();

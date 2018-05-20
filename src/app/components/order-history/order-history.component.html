@@ -20,18 +20,13 @@
                 <mat-table #table [dataSource]="dataSource" matSort>
                     <!-- Position Column -->
                     <ng-container matColumnDef="salesOrderCode">
-                        <mat-header-cell *matHeaderCellDef> Số đơn hàng </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Số đơn hàng </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.salesOrderCode}} </mat-cell>
                     </ng-container>
 
-                    <!-- Name Column -->
-                    <!--<ng-container matColumnDef="customerId">
-                        <mat-header-cell *matHeaderCellDef> Mã khách hàng </mat-header-cell>
-                        <mat-cell *matCellDef="let element"> {{element.customerId}} </mat-cell>
-                    </ng-container>-->
                     <!-- Weight Column -->
                     <ng-container matColumnDef="customerName">
-                        <mat-header-cell *matHeaderCellDef> Tên khách hàng </mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header> Tên khách hàng </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.customerName}} </mat-cell>
                     </ng-container>
                     <!-- Symbol Column -->
@@ -40,22 +35,27 @@
                         <mat-cell *matCellDef="let element"> {{element.orderDate | date:'dd/MM/yyyy'}} </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="orderStatus">
-                        <mat-header-cell *matHeaderCellDef>Trạng thái</mat-header-cell>
+                        <mat-header-cell *matHeaderCellDef mat-sort-header>Trạng thái</mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.orderStatus}} </mat-cell>
                     </ng-container>
                     <ng-container matColumnDef="totalAmount">
                         <mat-header-cell *matHeaderCellDef mat-sort-header> Thành tiền </mat-header-cell>
                         <mat-cell *matCellDef="let element"> {{element.totalAmount | amountConverter}} </mat-cell>
                     </ng-container>
-
+                    <ng-container matColumnDef="action">
+                        <mat-header-cell *matHeaderCellDef> Thao tác </mat-header-cell>
+                        <mat-cell *matCellDef="let element">
+                            <button  (click)="viewDetailSO(element)" style="background-color:#f37022;border:none;color:#fff;padding: 3px 9px; border-radius: 5px; cursor:pointer">Chi tiết</button>
+                        </mat-cell>
+                    </ng-container>
                     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
                     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
                 </mat-table>
 
-                <mat-paginator #paginator
+                <!--<mat-paginator #paginator
                                [pageSize]="5"
                                [showFirstLastButtons]="true">
-                </mat-paginator>
+                </mat-paginator>-->
             </div>
         </div>
     </div>

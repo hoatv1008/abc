@@ -48,7 +48,7 @@
         </mat-form-field>
     </mat-list-item>
     <mat-divider></mat-divider>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" *ngIf="so.orderStatus != 'Complete'">
         <span class="checkout-title" (click)="releaseSalesOrder()" style="cursor:pointer">
             <mat-icon class="md-36">print</mat-icon>&nbsp;
             Thanh toán (F9)

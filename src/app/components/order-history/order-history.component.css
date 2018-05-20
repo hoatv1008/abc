@@ -71,3 +71,6 @@ form > mat-form-field .mat-form-field-underline {
 /deep/ .order-container .table-header mat-form-field .mat-input-element {
     color: #333;
 }
+/deep/ .mat-header-cell {
+    font-size:15px
+}
