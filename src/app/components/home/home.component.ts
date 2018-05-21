@@ -4,7 +4,8 @@ import { of } from 'rxjs/observable/of';
 import { CategoriesService, OrdersService } from "../../services";
 import { CategoriesRootObject, CategoryDto, OrderDto } from "../../models";
 import { ItemHeaderService } from '../../services/item-header.service';
-
+import { MatDialog } from '@angular/material';
+import { OrderHistoryComponent } from '../order-history/order-history.component';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -15,26 +16,26 @@ export class HomeComponent implements OnInit {
     lstSO = new Array<OrderDto>();
     currentSO = new OrderDto();
     customerPay: number = 0;
-    constructor(private itemHeaderService: ItemHeaderService, private ordersService: OrdersService) { }
+    
+    constructor(private itemHeaderService: ItemHeaderService,
+        private ordersService: OrdersService,
+        public dialog: MatDialog,
+    ) {
+        
+    }
 
-    ngOnInit() {        
+    ngOnInit() {
         this.currentSO = this.createSO();
         this.lstSO.push(this.currentSO);
-        this.itemHeaderService.currentDetailSO.subscribe((item) => {
-            if (item) {
-                this.ordersService.ApiOrdersByIdGet(item).subscribe(n => {
-                    if (n && n.result) {
-                        this.lstSO.push(n.result);
-                        this.selectSO(n.result);
-                        return true;
-                    }
-                })
-                
-            }
-        });
     }
-    addSO() {
+    addSO(so: OrderDto = null) {
         let newSo = this.createSO();
+        if (so) {
+            let oldSO = this.lstSO.filter(n => n.selected == true)[0];
+            if (oldSO)
+                oldSO.selected = false;
+            newSo = so;
+        }
         this.lstSO.push(newSo);
         this.currentSO = newSo;
     }
@@ -49,10 +50,10 @@ export class HomeComponent implements OnInit {
         if (oldSO)
             oldSO.selected = false;
         soNew.selected = true;
-        soNew.orderItems = [];        
+        soNew.orderItems = [];
         return soNew;
     }
-    selectSO(so: OrderDto){
+    selectSO(so: OrderDto) {
         let oldSO = this.lstSO.filter(n => n.selected == true)[0];
         if (oldSO)
             oldSO.selected = false;
@@ -76,5 +77,16 @@ export class HomeComponent implements OnInit {
         localStorage.removeItem('currentUser');
         window.location.reload();
     }
-    
+    openDialog() {
+        const dialogRef = this.dialog.open(OrderHistoryComponent, {
+            height: '80%',
+            width: '150%'
+        });
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(`Dialog result: ${result}`);
+        });
+        const sub = dialogRef.componentInstance.addSO.subscribe((n) => {
+            this.addSO(n);
+        });
+    }
 }

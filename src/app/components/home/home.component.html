@@ -4,7 +4,12 @@
             <app-searchbar></app-searchbar>
             <span class="side-spacer"></span>
             <mat-icon>history</mat-icon> <span class="header-title">
-                <a routerLink="soh" style="color: #fff;text-decoration: none;">Lịch sử đơn hàng</a>
+                <!--<a routerLink="soh" style="color: #fff;text-decoration: none;">Lịch sử đơn hàng</a>-->
+                <button (click)="openDialog()" style="cursor: pointer;
+    font-size: 15px;
+    color: #fff;
+    background-color: #f37022;
+    border: none;">Lịch sử đơn hàng</button>
             </span>
             <span class="icon-spacer"></span>
             <!--<mat-icon>language</mat-icon> <span class="header-title">Ngôn ngữ</span>-->
@@ -34,7 +39,7 @@
             <span class="icon-spacer"></span>
             <mat-icon (click)="logout()" style="cursor:pointer">exit_to_app</mat-icon>
         </mat-toolbar>
-        <app-so-summary [(so)]="currentSO"></app-so-summary>
+        <app-so-summary [(so)]="currentSO" (removeSO)="removeSO($event)"></app-so-summary>
     </mat-sidenav>
 </mat-sidenav-container>
 <app-print [(so)]="currentSO"></app-print>

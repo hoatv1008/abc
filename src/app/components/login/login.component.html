@@ -1,7 +1,9 @@
-﻿<div id="LoginArea" class="login-page">
+﻿
+<div id="LoginArea" class="login-page">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
     <div #cardBody class="body">
         <div class="container-fluid">
-           
+
             <div class="text-center align-items-center row">
                 <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 custom-form-login">
                     <div class="logo text-uppercase" style="text-align: center; margin-top: 20px">

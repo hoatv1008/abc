@@ -1,7 +1,7 @@
 <form class="search-form">
   <mat-form-field floatLabel="never" disableRipple class="search-box">
     
-      <input type="text" matInput placeholder="Tìm kiếm sản phẩm (F2)" [formControl]="productSearch" [matAutocomplete]="auto" />
+      <input type="text" #inputSearch matInput placeholder="Tìm kiếm sản phẩm (F2)" [formControl]="productSearch" [matAutocomplete]="auto" />
       <mat-icon matPrefix>search</mat-icon>
       
     <mat-autocomplete autoActiveFirstOption [disableRipple]="true" #auto="matAutocomplete">

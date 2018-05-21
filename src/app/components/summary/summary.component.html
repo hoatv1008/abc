@@ -1,6 +1,6 @@
 <div class="line-fixed">
     <mat-form-field floatLabel="never" class="customer-search-box">
-        <input type="text" matInput placeholder="Tìm kiếm khách hàng (F4)" [formControl]="customerSearch" [matAutocomplete]="auto">
+        <input type="text" matInput placeholder="Tìm kiếm khách hàng (F4)" #searchCustomer [formControl]="customerSearch" [matAutocomplete]="auto">
         <mat-icon matPrefix>search</mat-icon>
         <mat-autocomplete autoActiveFirstOption [displayWith]="displayCustomerOption" #auto="matAutocomplete">
             <mat-option *ngFor="let c of customers | async" [value]="c" (onSelectionChange)="customerSelected(c)">
@@ -42,16 +42,16 @@
         {{so.returnAmount | amountConverter}}
     </mat-list-item>
     <mat-divider></mat-divider>
-    <mat-list-item>
+    <mat-list-item style="margin-top:15px">
         <mat-form-field floatLabel="never">
             <textarea placeholder="Ghi chú" type="text" matInput>{{so.notes}}</textarea>
         </mat-form-field>
     </mat-list-item>
     <mat-divider></mat-divider>
-    <mat-toolbar color="primary" *ngIf="so.orderStatus != 'Complete'">
-        <span class="checkout-title" (click)="releaseSalesOrder()" style="cursor:pointer">
+    <mat-toolbar color="primary">
+        <span class="checkout-title" #rlOrder (click)="releaseSalesOrder()" style="cursor:pointer">
             <mat-icon class="md-36">print</mat-icon>&nbsp;
-            Thanh toán (F9)
+            {{statusSO()}}
         </span>
     </mat-toolbar>
 </mat-list>

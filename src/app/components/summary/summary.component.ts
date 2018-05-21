@@ -1,4 +1,4 @@
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
+﻿import { Component, Input, Output, OnInit, EventEmitter, ElementRef, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { startWith } from 'rxjs/operators/startWith';
@@ -8,6 +8,7 @@ import { ItemHeaderService } from '../../services/item-header.service';
 import { CustomersRootObject, OrderItemDto, OrderCustomerDto } from '../../models';
 import { OrderDto } from '../../models/order-dto';
 import { UtilsService } from '../../Common/utils.service';
+import { HotkeysService, Hotkey } from 'angular2-hotkeys';
 @Component({
     selector: 'app-so-summary',
     templateUrl: './summary.component.html',
@@ -17,12 +18,23 @@ export class SOSummaryComponent implements OnInit {
     customerSearch: FormControl = new FormControl();
     customers: Observable<OrderCustomerDto[]>;
     @Input() so: OrderDto;
-    @Output() summaryChange = new EventEmitter<OrderDto>();
+    @Output() removeSO = new EventEmitter<OrderDto>();
     lstCustomer = JSON.parse(localStorage.getItem('lstCustomers'));
+    @ViewChild('searchCustomer') vc: ElementRef;
+    @ViewChild('rlOrder') rl: ElementRef;
     constructor(private customerService: CustomersService,
         private itemHeaderService: ItemHeaderService,
         private ordersService: OrdersService,
-        private utils: UtilsService) {
+        private utils: UtilsService,
+        private _hotkeysService: HotkeysService) {
+        this._hotkeysService.add(new Hotkey('f4', (event: KeyboardEvent): boolean => {
+            this.vc.nativeElement.focus();
+            return false; // Prevent bubbling
+        }));
+        this._hotkeysService.add(new Hotkey('f9', (event: KeyboardEvent): boolean => {
+            this.rl.nativeElement.click();
+            return false; // Prevent bubbling
+        }));
     }
 
     ngOnInit() {
@@ -45,14 +57,18 @@ export class SOSummaryComponent implements OnInit {
         this.so.customerName = c.customerName
         this.so.address = c.address;
         this.so.phone = c.phone;
-        this.summaryChange.emit(this.so);
         this.customerSearch.setValue('');
     }
     releaseSalesOrder() {
+        if (this.so.orderStatus == 'Complete') {
+            this.printSO();
+            return true;
+        }
         this.so.orderStatus = 'Complete';
         localStorage.setItem(this.so.salesOrderCode + '_salesInvoice', JSON.stringify(this.so));
         this.ordersService.ApiOrdersCreatePost(this.so).subscribe(r => {
             this.printSO();
+            this.removeSO.next(this.so);
         })
     }
     onChange(item): void {
@@ -134,4 +150,10 @@ font-family: monospace;
         );
         popupWin.document.close();
     }
+    statusSO() {
+        if (this.so.orderStatus != 'Complete')
+            return 'Thanh toán (F9)';
+        else
+            return 'In hóa đơn';
+    } 
 }

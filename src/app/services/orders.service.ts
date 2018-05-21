@@ -33,7 +33,7 @@ export class OrdersService extends BaseService {
     if (parameters != null) __params = __params.set('parameters', parameters.toString());
     let req = new HttpRequest<any>(
       'GET',
-        this.rootUrl + `/api/services/app/OrderSevice/GetAll`,
+        this.rootUrl + `/api/services/app/OrderSevice/GetAll?SkipCount=0&MaxResultCount=1000`,
       __body,
       {
         headers: __headers,

@@ -76,6 +76,8 @@ import { UtilsService } from '../app/Common/utils.service';
 import { CurrencyFormatterDirective } from './Common/currency-formatter.directive';
 import { AmountConverterPipe } from './Common/amountConverterPipe';
 import { PrintComponent } from './components/print/print.component';
+import { LoadingModule } from 'ngx-loading';
+import { HotkeyModule } from 'angular2-hotkeys';
 @NgModule({
     declarations: [
         AppComponent,
@@ -129,7 +131,9 @@ import { PrintComponent } from './components/print/print.component';
         MatToolbarModule,
         MatTooltipModule,
         HttpModule,
-        HttpClientModule
+        HttpClientModule,
+        LoadingModule,
+        HotkeyModule.forRoot(),
     ],
     providers: [
         AuthGuard,

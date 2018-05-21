@@ -1,14 +1,14 @@
-import { Injectable } from '@angular/core';
+﻿import { Injectable } from '@angular/core';
 import { Http, Headers, Response } from '@angular/http';
 import { ApiConfiguration } from '../api-configuration';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map'
 import { HttpResponse, HttpRequest, HttpHeaders } from '@angular/common/http';
-
+import swal, { SweetAlertOptions } from 'sweetalert2';
 @Injectable()
 export class AuthenticationService {
     public token: string;
-
+    public loading = false;
     constructor(private http: Http, private apiConfig: ApiConfiguration) {
         // set token if saved in local storage
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -21,13 +21,16 @@ export class AuthenticationService {
     }
 
     login(u: AuthenticateModel): Observable<boolean> {
+
         return this.http.post(this.apiConfig.rootUrl + '/api/TokenAuth/Authenticate',
             {
                 usernameOrEmailAddress: u.userNameOrEmailAddress,
                 password: u.password,
                 rememberClient: u.rememberClient
             },
-            { headers: new Headers({ 'Content-Type': 'application/json' }) }).map((response: Response) => {
+            {
+                headers: new Headers({ 'Content-Type': 'application/json' })
+            }).map((response: Response) => {
                 // login successful if there's a jwt token in the response
                 let token = response.json().result && response.json().result.accessToken;
                 if (token) {
@@ -41,9 +44,16 @@ export class AuthenticationService {
                     return true;
                 } else {
                     // return false to indicate failed login
+                    swal(
+                        'Đang nhập thất bại, vui lòng kiểm tra lại tên đăng nhập hoặc mật khẩu!',
+                        '',
+                        'error'
+                    )
                     return false;
                 }
-            });
+            }).catch((error: any) => {
+                return Observable.throw(new Error(error.status));
+            });;
     }
     logout(): void {
         // clear token remove user from local storage to log user out
