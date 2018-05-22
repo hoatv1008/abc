@@ -33,9 +33,10 @@
         <mat-toolbar color="primary">
             <mat-icon class="account-icon md-48">account_circle</mat-icon>
             <span class="side-spacer"></span>
-            <mat-icon>backup</mat-icon>
+            <mat-icon>notification_important</mat-icon>
+            <p style="font-size:20px" *ngIf="countSO > 0" (click)="resetNotifice()">{{countSO}}</p>
             <span class="icon-spacer"></span>
-            <mat-icon>help</mat-icon>
+            <!--<mat-icon>help</mat-icon>-->
             <span class="icon-spacer"></span>
             <mat-icon (click)="logout()" style="cursor:pointer">exit_to_app</mat-icon>
         </mat-toolbar>

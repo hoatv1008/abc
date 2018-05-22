@@ -15,11 +15,6 @@ export class AuthenticationService {
         this.token = currentUser && currentUser.token;
     }
 
-    authorize() {
-        let url = this.apiConfig.rootUrl + '/oauth/authorize?client_id=' + this.apiConfig.clientId + '&redirect_uri=' + encodeURI('http://localhost:4200/login') + '&response_type=code';
-        window.location.href = url;
-    }
-
     login(u: AuthenticateModel): Observable<boolean> {
 
         return this.http.post(this.apiConfig.rootUrl + '/api/TokenAuth/Authenticate',
@@ -32,14 +27,15 @@ export class AuthenticationService {
                 headers: new Headers({ 'Content-Type': 'application/json' })
             }).map((response: Response) => {
                 // login successful if there's a jwt token in the response
-                let token = response.json().result && response.json().result.accessToken;
+                let res = response.json().result;
+                let token = res.accessToken;
+                let enc_auth_token = res.encryptedAccessToken;
                 if (token) {
                     // set token property
                     this.token = token;
-
                     // store username and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('currentUser', JSON.stringify({ username: "admin", token: token }));
-
+                    localStorage.setItem('enc_auth_token', enc_auth_token);
                     // return true to indicate successful login
                     return true;
                 } else {

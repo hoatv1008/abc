@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+﻿import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { of } from 'rxjs/observable/of';
 import { CategoriesService, OrdersService } from "../../services";
@@ -6,6 +6,7 @@ import { CategoriesRootObject, CategoryDto, OrderDto } from "../../models";
 import { ItemHeaderService } from '../../services/item-header.service';
 import { MatDialog } from '@angular/material';
 import { OrderHistoryComponent } from '../order-history/order-history.component';
+import { NotificationsService } from 'angular4-notify';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -16,10 +17,11 @@ export class HomeComponent implements OnInit {
     lstSO = new Array<OrderDto>();
     currentSO = new OrderDto();
     customerPay: number = 0;
-    
+    countSO: number = 0;
     constructor(private itemHeaderService: ItemHeaderService,
         private ordersService: OrdersService,
         public dialog: MatDialog,
+        private notificationsService: NotificationsService
     ) {
         
     }
@@ -27,6 +29,15 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
         this.currentSO = this.createSO();
         this.lstSO.push(this.currentSO);
+        abp.event.on('abp.notifications.received', userNotification => {
+            let data = userNotification.notification.data;
+            if (userNotification.notification.data.type == 'HomeABC.Admin.Application.Common.NewSalesOrderNotifice') {
+                if (data.success == true) {
+                    this.countSO++;
+                    this.notificationsService.addInfo('Bạn có 1 đơn hàng mới');
+                } 
+            }
+        });
     }
     addSO(so: OrderDto = null) {
         let newSo = this.createSO();
@@ -88,5 +99,8 @@ export class HomeComponent implements OnInit {
         const sub = dialogRef.componentInstance.addSO.subscribe((n) => {
             this.addSO(n);
         });
+    }
+    resetNotifice() {
+        this.countSO = 0;
     }
 }

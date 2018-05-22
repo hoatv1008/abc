@@ -20,4 +20,5 @@ export class OrderDto {
     returnAmount: number;
     payAmount: number;
     selected: boolean;
+    source: string;
 }                     

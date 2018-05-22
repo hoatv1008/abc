@@ -78,6 +78,7 @@ import { AmountConverterPipe } from './Common/amountConverterPipe';
 import { PrintComponent } from './components/print/print.component';
 import { LoadingModule } from 'ngx-loading';
 import { HotkeyModule } from 'angular2-hotkeys';
+import { NotificationsModule, NotificationsService } from 'angular4-notify';
 @NgModule({
     declarations: [
         AppComponent,
@@ -134,6 +135,7 @@ import { HotkeyModule } from 'angular2-hotkeys';
         HttpClientModule,
         LoadingModule,
         HotkeyModule.forRoot(),
+        NotificationsModule,
     ],
     providers: [
         AuthGuard,
@@ -153,6 +155,7 @@ import { HotkeyModule } from 'angular2-hotkeys';
         StoreService,
         BaseRequestOptions,
         ItemHeaderService,
+        NotificationsService,
         UtilsService,
         AmountConverterPipe,
         {
