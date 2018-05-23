@@ -79,6 +79,7 @@ import { PrintComponent } from './components/print/print.component';
 import { LoadingModule } from 'ngx-loading';
 import { HotkeyModule } from 'angular2-hotkeys';
 import { NotificationsModule, NotificationsService } from 'angular4-notify';
+import { AlertsModule } from 'angular-alert-module';
 @NgModule({
     declarations: [
         AppComponent,
@@ -136,6 +137,7 @@ import { NotificationsModule, NotificationsService } from 'angular4-notify';
         LoadingModule,
         HotkeyModule.forRoot(),
         NotificationsModule,
+        AlertsModule.forRoot()
     ],
     providers: [
         AuthGuard,

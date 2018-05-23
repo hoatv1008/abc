@@ -6,7 +6,7 @@ import { CategoriesRootObject, CategoryDto, OrderDto } from "../../models";
 import { ItemHeaderService } from '../../services/item-header.service';
 import { MatDialog } from '@angular/material';
 import { OrderHistoryComponent } from '../order-history/order-history.component';
-import { NotificationsService } from 'angular4-notify';
+import { AlertsService } from 'angular-alert-module';
 @Component({
     selector: 'app-home',
     templateUrl: './home.component.html',
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
     constructor(private itemHeaderService: ItemHeaderService,
         private ordersService: OrdersService,
         public dialog: MatDialog,
-        private notificationsService: NotificationsService
+        private alerts: AlertsService
     ) {
         
     }
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
             if (userNotification.notification.data.type == 'HomeABC.Admin.Application.Common.NewSalesOrderNotifice') {
                 if (data.success == true) {
                     this.countSO++;
-                    this.notificationsService.addInfo('Bạn có 1 đơn hàng mới');
+                    this.alerts.setMessage('Bạn có 1 đơn hàng mới', 'warn');
                 } 
             }
         });
