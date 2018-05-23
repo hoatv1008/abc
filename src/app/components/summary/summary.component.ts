@@ -72,7 +72,7 @@ export class SOSummaryComponent implements OnInit {
             this.removeSO.next(this.so);
         })
     }
-    onChange(item): void {
+    onChange(): void {
         this.so.returnAmount = this.utils.removeChar(this.so.payAmount) - this.so.totalAmount;
     }
     printSO(): void {

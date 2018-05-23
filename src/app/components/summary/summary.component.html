@@ -2,7 +2,7 @@
     <mat-form-field floatLabel="never" class="customer-search-box">
         <input type="text" matInput placeholder="Tìm kiếm khách hàng (F4)" #searchCustomer [formControl]="customerSearch" [matAutocomplete]="auto">
         <mat-icon matPrefix>search</mat-icon>
-        <mat-autocomplete autoActiveFirstOption [displayWith]="displayCustomerOption" #auto="matAutocomplete">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
             <mat-option *ngFor="let c of customers | async" [value]="c" (onSelectionChange)="customerSelected(c)">
                 <div class="sm-list-search-results-item">
                     <div class="line"> <b class="title">{{ c.customerName }}</b></div>
