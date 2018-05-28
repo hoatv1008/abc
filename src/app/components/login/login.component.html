@@ -1,3 +1,44 @@
-<p>
-  login page!
-</p>
+﻿
+<div id="LoginArea" class="login-page">
+    <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '14px' }"></ngx-loading>
+    <div #cardBody class="body">
+        <div class="container-fluid">
+
+            <div class="text-center align-items-center row">
+                <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 custom-form-login">
+                    <div class="logo text-uppercase" style="text-align: center; margin-top: 20px">
+                        <img alt="VNPOST" src="../../assets/images/logo1.png">
+                    </div>
+                    <form>
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">person</i>
+                            </span>
+                            <div class="form-line">
+                                <input materialInput [(ngModel)]="user.userNameOrEmailAddress" autoFocus class="form-control" type="text" autocomplete="off" placeholder="Tên đăng nhập" name="userNameOrEmailAddress" required maxlength="255" />
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="material-icons">lock</i>
+                            </span>
+                            <div class="form-line">
+                                <input materialInput type="password" [(ngModel)]="user.password" class="form-control" name="password" placeholder="Mật khẩu" required maxlength="32">
+                            </div>
+                        </div>
+                        <div class="row" style="padding:5px 0px 0 27px">
+                            <div class="col-xs-8 p-t-5">
+                                <input type="checkbox" [(ngModel)]="user.rememberClient" name="rememberMe" id="rememberme" class="filled-in chk-col-pink" value="true">
+                                <label for="rememberme">Ghi nhớ tài khoản</label>
+                            </div>
+                            <div class="col-xs-4">
+                                <button id="LoginButton" style="margin-left: 9px;" class="btn btn-block bg-pink waves-effect" type="submit" (click)="login()">Đăng nhập</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

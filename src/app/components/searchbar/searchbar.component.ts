@@ -1,13 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { startWith } from 'rxjs/operators/startWith';
 import { map } from 'rxjs/operators/map';
-// import { of } from 'rxjs/observable/of';
 import { ProductsService } from '../../services';
 import { ItemHeaderService } from '../../services/item-header.service';
-
 import { ProductDto, ProductsRootObjectDto } from '../../models';
+import { Hotkey, HotkeysService } from 'angular2-hotkeys';
 
 @Component({
     selector: 'app-searchbar',
@@ -15,25 +14,30 @@ import { ProductDto, ProductsRootObjectDto } from '../../models';
     styleUrls: ['./searchbar.component.css']
 })
 export class SOSearchbarComponent implements OnInit {
-
+    @ViewChild('inputSearch') vc: ElementRef;
     productSearch: FormControl = new FormControl();
-    products: ProductDto[];
-
-    constructor(private catalog: ProductsService, private itemHeaderService: ItemHeaderService) {
-
+    products: Observable<ProductDto[]>;
+    lstProducts = JSON.parse(localStorage.getItem('lstProducts'));
+    constructor(private productService: ProductsService, private itemHeaderService: ItemHeaderService, private _hotkeysService: HotkeysService) {
+        this._hotkeysService.add(new Hotkey('f2', (event: KeyboardEvent): boolean => {
+            this.vc.nativeElement.focus();
+            return false; // Prevent bubbling
+        }));
     }
 
     ngOnInit() {
-        this.productSearch.valueChanges
-            .subscribe(keyword => {
-                this.filter(keyword).subscribe(r => this.products = r);
-            });
+        this.products = this.productSearch.valueChanges
+            .pipe(
+            startWith(''),
+            map(val => this.filter(val))
+            );
     }
 
-    filter(val: string): Observable<ProductDto[]> {
-        return this.catalog.ApiProductsGet().map(r => {
-            return r.products;
-        });
+    filter(val: string): ProductDto[] {
+        return this.lstProducts.filter(item =>
+            (val && item.productName && item.productName.toLowerCase().indexOf(val) === 0) ||
+            (val && item.code && item.code.toLowerCase().indexOf(val) === 0)
+        )
     }
 
     productSelected(c: ProductDto) {

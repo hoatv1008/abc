@@ -12,6 +12,7 @@ import { filter } from 'rxjs/operators/filter';
 import { OrdersRootObject } from '../models/orders-root-object';
 import { ErrorsRootObject } from '../models/errors-root-object';
 import { OrdersCountRootObject } from '../models/orders-count-root-object';
+import { OrderDto } from '../models';
 @Injectable()
 export class OrdersService extends BaseService {
   constructor(
@@ -32,7 +33,7 @@ export class OrdersService extends BaseService {
     if (parameters != null) __params = __params.set('parameters', parameters.toString());
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/orders`,
+        this.rootUrl + `/api/services/app/OrderSevice/GetAll?SkipCount=0&MaxResultCount=1000`,
       __body,
       {
         headers: __headers,
@@ -55,7 +56,7 @@ export class OrdersService extends BaseService {
    * @param parameters undefined
    * @return Success
    */
-  ApiOrdersGet(parameters?: any): Observable<OrdersRootObject> {
+    ApiOrdersGet(parameters?: any): Observable<any> {
     return this.ApiOrdersGetResponse(parameters).pipe(
       map(_r => _r.body)
     );
@@ -65,7 +66,7 @@ export class OrdersService extends BaseService {
    * @param parameters undefined
    * @return Success
    */
-  ApiOrdersCountGetResponse(parameters?: any): Observable<HttpResponse<OrdersCountRootObject>> {
+    ApiOrdersCountGetResponse(parameters?: any): Observable<HttpResponse<any>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -110,15 +111,14 @@ export class OrdersService extends BaseService {
    *
    * @return Success
    */
-  ApiOrdersByIdGetResponse(params: OrdersService.ApiOrdersByIdGetParams): Observable<HttpResponse<OrdersRootObject>> {
+    ApiOrdersByIdGetResponse(params: OrderDto): Observable<HttpResponse<OrdersRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
 
-    if (params.fields != null) __params = __params.set('fields', params.fields.toString());
     let req = new HttpRequest<any>(
-      'GET',
-      this.rootUrl + `/api/orders/${params.id}`,
+        'GET',
+        this.rootUrl + "/api/services/app/OrderSevice/Get?Id=" + params.id,
       __body,
       {
         headers: __headers,
@@ -146,7 +146,7 @@ export class OrdersService extends BaseService {
    *
    * @return Success
    */
-  ApiOrdersByIdGet(params: OrdersService.ApiOrdersByIdGetParams): Observable<OrdersRootObject> {
+    ApiOrdersByIdGet(params: OrderDto): Observable<any> {
     return this.ApiOrdersByIdGetResponse(params).pipe(
       map(_r => _r.body)
     );
@@ -252,7 +252,7 @@ export class OrdersService extends BaseService {
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/orders/customer/${customer_id}`,
+        this.rootUrl + `/api/orders/customer/${customerId}`,
       __body,
       {
         headers: __headers,
@@ -285,14 +285,14 @@ export class OrdersService extends BaseService {
    * @param orderDelta undefined
    * @return Success
    */
-  ApiOrdersCreatePostResponse(orderDelta?: Delta[OrderDto]): Observable<HttpResponse<OrdersRootObject>> {
+    ApiOrdersCreatePostResponse(orderDelta?: OrderDto): Observable<HttpResponse<OrdersRootObject>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
     __body = orderDelta;
     let req = new HttpRequest<any>(
       'POST',
-      this.rootUrl + `/api/orders/create`,
+        this.rootUrl + `/api/services/app/OrderSevice/Create`,
       __body,
       {
         headers: __headers,
@@ -315,7 +315,7 @@ export class OrdersService extends BaseService {
    * @param orderDelta undefined
    * @return Success
    */
-  ApiOrdersCreatePost(orderDelta?: Delta[OrderDto]): Observable<OrdersRootObject> {
+    ApiOrdersCreatePost(orderDelta?: OrderDto): Observable<OrdersRootObject> {
     return this.ApiOrdersCreatePostResponse(orderDelta).pipe(
       map(_r => _r.body)
     );

@@ -1,23 +1,36 @@
-import { Component } from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
+import { CustomersService, ProductsService } from './services';
+import { OrderCustomerDto } from './models';
+import { Observable } from 'rxjs/Observable';
+import { Response } from '@angular/http/src/static_response';
+import { SignalRHelper } from './Common/SignalRHelper';
+import { ApiConfiguration } from './api-configuration';
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
-export class AppComponent {
-  title = 'app';
-
-  solist = [
-    { id: '1', name: 'Lemon', selected: false },
-    { id: '2', name: 'Lime', selected: false },
-    { id: '3', name: 'Apple', selected: true },
-  ];
-
-  remove(so: any): void {
-    let i = this.solist.indexOf(so);
-    if (i >= 0) {
-      this.solist.splice(i, 1);
+export class AppComponent implements OnInit {
+    title = 'app';
+    token: string;
+    constructor(private customerService: CustomersService,
+        private productService: ProductsService,
+        private apiConfig: ApiConfiguration
+    ) {
+        var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.token = currentUser && currentUser.token;
     }
-  }
+    res: any
+    ngOnInit() {
+
+        SignalRHelper.initSignalR(this.apiConfig.rootUrl, this.token);
+
+        this.customerService.getListCustomer().subscribe(r => {
+            localStorage.setItem('lstCustomers', JSON.stringify(r.body.result.items));
+        });
+        this.productService.getListProduct().subscribe(r => {
+            localStorage.setItem('lstProducts', JSON.stringify(r.body.result.items));
+        });
+    }
+
 }

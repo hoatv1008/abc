@@ -72,7 +72,13 @@ import { ProductsService } from './services/products.service';
 import { ShoppingCartItemsService } from './services/shopping-cart-items.service';
 import { StoreService } from './services/store.service';
 import { ItemHeaderService } from './services/item-header.service';
-import { AmountConverterPipe } from './Common/amountConverterPipe'
+import { UtilsService } from '../app/Common/utils.service';
+import { CurrencyFormatterDirective } from './Common/currency-formatter.directive';
+import { AmountConverterPipe } from './Common/amountConverterPipe';
+import { PrintComponent } from './components/print/print.component';
+import { LoadingModule } from 'ngx-loading';
+import { HotkeyModule } from 'angular2-hotkeys';
+import { AlertsModule } from 'angular-alert-module';
 @NgModule({
     declarations: [
         AppComponent,
@@ -82,7 +88,9 @@ import { AmountConverterPipe } from './Common/amountConverterPipe'
         SOSearchbarComponent,
         SOLinesComponent,
         SOSummaryComponent,
-        AmountConverterPipe
+        CurrencyFormatterDirective,   
+        AmountConverterPipe,
+        PrintComponent
     ],
     imports: [
         BrowserModule,
@@ -91,7 +99,6 @@ import { AmountConverterPipe } from './Common/amountConverterPipe'
         ReactiveFormsModule,
         CdkTableModule,
         Routing,
-
         MatAutocompleteModule,
         MatButtonModule,
         MatButtonToggleModule,
@@ -125,7 +132,10 @@ import { AmountConverterPipe } from './Common/amountConverterPipe'
         MatToolbarModule,
         MatTooltipModule,
         HttpModule,
-        HttpClientModule
+        HttpClientModule,
+        LoadingModule,
+        HotkeyModule.forRoot(),
+        AlertsModule.forRoot()
     ],
     providers: [
         AuthGuard,
@@ -145,6 +155,8 @@ import { AmountConverterPipe } from './Common/amountConverterPipe'
         StoreService,
         BaseRequestOptions,
         ItemHeaderService,
+        UtilsService,
+        AmountConverterPipe,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: TokenInterceptor,

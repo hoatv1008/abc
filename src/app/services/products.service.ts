@@ -32,7 +32,7 @@ export class ProductsService extends BaseService {
     if (parameters != null) __params = __params.set('parameters', parameters.toString());
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/api/products/search`,
+        this.rootUrl + `/api/products/search`,
       __body,
       {
         headers: __headers,
@@ -279,7 +279,31 @@ export class ProductsService extends BaseService {
     return this.ApiProductsPostResponse(productDelta).pipe(
       map(_r => _r.body)
     );
-  }
+    }
+    getListProduct() {
+        let __params = this.newParams();
+        let __headers = new HttpHeaders();
+        let __body: any = null;
+        let req = new HttpRequest<any>(
+            'GET',
+            this.rootUrl + `/api/services/app/ProductService/GetAll`,
+            __body,
+            {
+                headers: __headers,
+                params: __params,
+                responseType: 'json'
+            });
+
+        return this.http.request<any>(req).pipe(
+            filter(_r => _r instanceof HttpResponse),
+            map(_r => {
+                let _resp = _r as HttpResponse<any>;
+                return _resp;
+            })
+        );
+
+    }
+
 }
 
 export module ProductsService {

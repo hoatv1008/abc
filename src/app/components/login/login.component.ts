@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
-import { AuthenticationService } from '../../services/authentication.service';
-
+import { AuthenticationService, AuthenticateModel } from '../../services/authentication.service';
+import { FormControl } from '@angular/forms';
+import swal, { SweetAlertOptions } from 'sweetalert2';
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
     error = '';
-
+    user: AuthenticateModel = null;
+    public loading = false;
     constructor(
         private router: Router,
         private authenticationService: AuthenticationService,
@@ -18,26 +19,36 @@ export class LoginComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        // reset login status
+        this.user = new AuthenticateModel();
+        this.user.userNameOrEmailAddress = '';
         this.authenticationService.logout();
-        if (this.route.snapshot.queryParams.code == null) {
-            this.authenticationService.authorize();
-        }
-        else {
-            this.login(this.route.snapshot.queryParams.code);
-        }
     }
 
-    login(code) {
-         this.authenticationService.login(code)
+    login() {
+        this.loading = true;
+        this.authenticationService.login(this.user)
             .subscribe(result => {
+                this.loading = false;
                 if (result === true) {
                     // login successful
                     this.router.navigate(['/']);
                 } else {
                     // login failed
-                    this.error = 'Username or password is incorrect';
+                    // return false to indicate failed login
+                    swal(
+                        'Đang nhập thất bại, vui lòng kiểm tra lại tên đăng nhập hoặc mật khẩu!',
+                        '',
+                        'error'
+                    )
                 }
+            }, (err) => {
+                this.loading = false;
+                // return false to indicate failed login
+                swal(
+                    'Đang nhập thất bại, vui lòng kiểm tra lại tên đăng nhập hoặc mật khẩu!',
+                    '',
+                    'error'
+                )
             });
     }
 

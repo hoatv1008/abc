@@ -8,6 +8,9 @@ export class ItemHeaderService {
     currentSod = this.sodRaw.asObservable();
     private sohRaw = new BehaviorSubject<any>(null);
     currentSoh = this.sohRaw.asObservable();
+    private detailSO = new BehaviorSubject<any>(null);
+    currentDetailSO = this.detailSO.asObservable();
+
     constructor() {
     }
     changeItem(item: any) {
@@ -19,4 +22,8 @@ export class ItemHeaderService {
     changeSummany(soh: any) {
         this.sohRaw.next(soh)
     }
+    changeViewDetail(so: any) {
+        this.detailSO.next(so);
+    }
+
 }
